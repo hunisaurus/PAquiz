@@ -95,6 +95,7 @@ function displayFirstPage(data){
     const howManyDoYouWantElement = document.createElement("p");
     howManyDoYouWantElement.classList.add("firstPage");
     howManyDoYouWantElement.innerText = "Milyen hosszú legyen a teszt?"
+    howManyDoYouWantElement.classList.add("textChange");
     
     const questionsSlideInput = document.createElement("input");
     questionsSlideInput.classList.add("firstPage");
@@ -109,6 +110,7 @@ function displayFirstPage(data){
     
     const howManyQuestionsCount = document.createElement("div");
     howManyQuestionsCount.classList.add("firstPage");
+    howManyQuestionsCount.classList.add("textChange")
     howManyQuestionsCount.id = "howManyQuestionsCount";
     howManyQuestionsCount.innerText = 0;
     

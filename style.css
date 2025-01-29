@@ -41,6 +41,11 @@ button{
     transition: border-color ease-out 0.5s, color ease-out 0.3s;
 }
 
+input[type="checkbox"]{
+    border-radius: 10px;
+    background-color: aqua;
+}
+
 button:hover{
     border-color: red;
     color: red;
@@ -74,6 +79,7 @@ button:hover{
     transform: translate(0, 25%);
     margin-top: 5px;
     margin-bottom: 5px;
+    background: azure;
 }
 
 .maxQuestionCount{
@@ -258,7 +264,7 @@ textarea{
     border-radius: 50%;
     height: 200px;
     width: 200px;
-    position: fixed;
+    position: absolute;
     background-color: blueviolet;
     padding: 10px;
     border-color: rgb(255, 0, 0);
@@ -289,8 +295,7 @@ textarea{
 #endScreen{
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 340%);
-    transition: color, ease-out 0.5s, color ease-out 0.3s;
+    transform: translate(-50%, 370%);
 }
 
 .textChange{
