@@ -169,7 +169,7 @@ p{
 #question{
     position: relative;
     width: 100%;
-    
+    transition: color, ease-out 0.5s, color ease-out 0.3s;
 }
 
 #explanation{
@@ -192,17 +192,6 @@ textarea{
     border-radius: 30px;
 }
 
-#error{
-    color: red;
-    font-weight: bold;
-    font-size: 30px;
-    display: flex;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 400%);
-
-}
-
 #yourAnswer{
     border-radius: 30px;
     border-color: blueviolet;
@@ -215,7 +204,7 @@ textarea{
     transform: translate(-50%, 0%);
     /* left: 25%; */
     text-align: right;
-    width: 500px;
+    width: 35%;
 }
 
 #answersSoFar{
@@ -230,12 +219,12 @@ textarea{
     transform: translate(-50%, 0%);
     left: 70%;
     text-align: left;
-    width: 500px;
+    width: 35%;
     margin-bottom: 20px
 }
 
 #yesOrNo{
-    /* display: flex; */
+    display: block;
     position: relative;
     padding: 20px;
     transform: translate(-50%, 50%);
@@ -244,6 +233,7 @@ textarea{
     /* font-size: large; */
     align-items: center;
     margin-bottom: 30px;
+    width: 50%
 }
 
 #answerTitle{
@@ -300,4 +290,13 @@ textarea{
     position: absolute;
     left: 50%;
     transform: translate(-50%, 340%);
+    transition: color, ease-out 0.5s, color ease-out 0.3s;
+}
+
+.textChange{
+    transition: color, ease-out 0.5s, color ease-out 0.3s;
+}
+
+.textChange:hover{
+    color:blueviolet
 }

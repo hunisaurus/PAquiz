@@ -36,6 +36,7 @@ function displayFirstPage(data){
     const chooseThemesElement = document.createElement("h4");
     chooseThemesElement.id = "chooseThemes";
     chooseThemesElement.classList.add("firstPage");
+    chooseThemesElement.classList.add("textChange");
     chooseThemesElement.innerText = "VÁLASSZ TÉMÁKAT:"
     
     for (let cat of categories){
@@ -280,6 +281,7 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
     
     const questionElement = document.createElement("h2");
     questionElement.id = "question";
+    questionElement.classList.add("textChange");
 
     const explanationElement = document.createElement("p");
     explanationElement.id = "explanation";
@@ -449,6 +451,7 @@ function displayScorePage(rootElement){
 
     const endScreenElement = document.createElement("h1");
     endScreenElement.id = "endScreen"
+    endScreenElement.classList.add("textChange")
     endScreenElement.innerText = "VÉGEREDMÉNY";
     
     let sum = 0;
@@ -464,12 +467,12 @@ function displayScorePage(rootElement){
         document.getElementById("percentageNumber").innerText = (sum / questionsSoFar.length)*100 + "%";
     }
 
+    rootElement.appendChild(endScreenElement);
     document.getElementById("percentageQuestionCount").innerText = sum + " / " + questionsSoFar.length + " választ tudtál";
     document.getElementById("percentageElement").classList.add("endPage");
     document.getElementById("percentageElement").classList.add("endRight");
     document.getElementById("countQuestionsElement").innerText = currQuestionCount + " / " + allQuestionsCount;
     document.getElementById("whereWeAreElement").classList.add("endLeft");
-    rootElement.appendChild(endScreenElement);
 
     return rootElement;
 }
