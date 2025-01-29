@@ -45,7 +45,6 @@ function displayFirstPage(data){
                 count++;
             }
         }
-    
         const categoryElement = document.createElement("div");
         categoryElement.innerText = cat;
         categoryElement.classList.add("firstPage");
@@ -86,7 +85,6 @@ function displayFirstPage(data){
     maxQuestionCountElement.classList.add("maxQuestionCount");
     maxQuestionCountElement.innerText = "MAX: " + maxQuestionCount + " kérdés";
     
-    
     goButton.setAttribute("onmousedown", "audio.play()");
     
     const questionsSlideDiv = document.createElement(`div`);
@@ -103,7 +101,6 @@ function displayFirstPage(data){
     questionsSlideInput.setAttribute("type", "range");
     questionsSlideInput.setAttribute("min", 1);
     questionsSlideInput.setAttribute("max", 1);
-    // questionsSlideInput.value = 0;
     
     const questionsSlideDetails = document.createElement("datalist");
     questionsSlideDetails.id = "details"
@@ -271,8 +268,7 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
             E.remove();
         };
     }
-    
-    
+        
     if (document.getElementById("yes") != undefined){
         document.getElementById("yourAnswer").remove();
         document.getElementById("yesOrNo").remove();
@@ -341,6 +337,7 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
             sum++
         }
     }
+
     if(questionsSoFar.length == 0){
         document.getElementById("percentageNumber").innerText = "0%";
     } else {
@@ -348,10 +345,7 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
     }
 
     document.getElementById("percentageQuestionCount").innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
-
-    
     document.getElementById("countQuestionsElement").innerText = currQuestionCount + " / " + allQuestionsCount;
-    
     questionsSoFar.push(currentQuestion);
 
     answerInputElement.addEventListener("keydown", (e)=>{
@@ -362,11 +356,11 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
             goButton.click();
         }
     })
+
     return rootElement;
 }
 
 function displayAnswerPage(currentQuestion){
-
     document.getElementById("explanation").remove();
     rootElement.removeChild(goButton);
     
@@ -381,8 +375,6 @@ function displayAnswerPage(currentQuestion){
     const yourAnswer = document.createElement("p");
     yourAnswer.id = "yourAnswerP";
     yourAnswerElement.appendChild(yourAnswer);
-
-    
 
     yourAnswer.innerText = document.getElementById("answerInput").value
     document.getElementById("answerInput").remove();
@@ -401,10 +393,6 @@ function displayAnswerPage(currentQuestion){
     noButtonElement.id = "no";
     noButtonElement.innerText = "NEM"
     askIfGoodOrNo.appendChild(noButtonElement);
-
-
-    
-    // console.log(currentQuestion);
     
     for (let i = 0; i < currentQuestion.answers.length; i++){
         const answerOfSomeOneElement = document.createElement("div");
@@ -422,7 +410,6 @@ function displayAnswerPage(currentQuestion){
         
         rootElement.appendChild(answerOfSomeOneElement);
     }
-
 
     rootElement.appendChild(askIfGoodOrNo);
 
@@ -448,10 +435,10 @@ function displayAnswerPage(currentQuestion){
         }
     })
 
+    return rootElement;
 }
 
 function displayScorePage(rootElement){
-    // rootElement.innerHTML = "";
     goButton.remove();
     document.getElementById("yourAnswer").remove();
     document.getElementById("yesOrNo").remove();
@@ -470,6 +457,7 @@ function displayScorePage(rootElement){
             sum++
         }
     }
+
     if(questionsSoFar.length == 0){
         document.getElementById("percentageNumber").innerText = "0%";
     } else {
@@ -477,17 +465,13 @@ function displayScorePage(rootElement){
     }
 
     document.getElementById("percentageQuestionCount").innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
-
     document.getElementById("percentageElement").classList.add("endPage");
     document.getElementById("percentageElement").classList.add("endRight");
-
-    
     document.getElementById("countQuestionsElement").innerText = currQuestionCount + " / " + allQuestionsCount;
-    
     document.getElementById("whereWeAreElement").classList.add("endLeft");
-
     rootElement.appendChild(endScreenElement);
 
+    return rootElement;
 }
 
 const init = ()=>{
