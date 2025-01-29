@@ -10,106 +10,120 @@ const allQuestionsToChooseFrom = [];
 const questionsSoFar = [];
 let currentQuestion;
 
-
-
-// fill categories
-const categories = [];
-for (let question of data){
-    if (!categories.includes(question.category)){
-        categories.push(question.category);
-    }
-}
-
-
-// view
-
-const welcomeElement = document.createElement("h1");
-welcomeElement.id = "welcome";
-welcomeElement.innerText = "Üdv a PA quizben!";
-
-const categoriesElement = document.createElement("div");
-categoriesElement.id = "categories"
-
-const chooseThemesElement = document.createElement("h4");
-chooseThemesElement.innerText = "VÁLASSZ TÉMÁKAT:"
-
-for (let cat of categories){
-    let count = 0;
-    for (let q of data){
-        if (q.category === cat){
-            count++;
-        }
-    }
-
-    const categoryElement = document.createElement("div");
-    categoryElement.innerText = cat;
-    categoriesElement.appendChild(categoryElement);
-
-    const catCheckBox = document.createElement("input");
-    catCheckBox.setAttribute("type", "checkbox");
-    catCheckBox.id = cat;
-    catCheckBox.classList.add("checkBox")
-    categoryElement.appendChild(catCheckBox);
-
-    const countElement = document.createElement("div");
-    countElement.classList.add("categoryCount");
-    countElement.id = "categoryCount";
-    countElement.innerText = count;
-    categoryElement.appendChild(countElement);
-}
-
-const checkAllElement = document.createElement("div");
-checkAllElement.classList.add("checkAll")
-checkAllElement.innerText = "ÖSSZES TÉMA: "
-
-const checkAllBox = document.createElement("input");
-checkAllBox.setAttribute("type", "checkbox");
-checkAllBox.id = "checkAllBox";
-// checkAllBox.classList.add("checkBox")
-checkAllBox.classList.add("checkAllBox")
-checkAllElement.appendChild(checkAllBox);
-
-categoriesElement.appendChild(checkAllElement);
-
-const maxQuestionCountElement = document.createElement("div");
-maxQuestionCountElement.id = "maxQuestionCount"
-maxQuestionCountElement.classList.add("maxQuestionCount")
-maxQuestionCountElement.innerText = "MAX: " + maxQuestionCount + " kérdés";
-
 const rootElement = document.getElementById("root");
 
 const goButton = document.createElement("button");
-goButton.setAttribute("onmousedown", "audio.play()");
 
-const questionsSlideDiv = document.createElement(`div`);
-questionsSlideDiv.id = "slide"
-
-const howManyDoYouWantElement = document.createElement("p");
-howManyDoYouWantElement.innerText = "Milyen hosszú legyen a teszt?"
-
-const questionsSlideInput = document.createElement("input");
-questionsSlideInput.id = "howManyQuestionsInput";
-questionsSlideInput.setAttribute("type", "range");
-questionsSlideInput.setAttribute("min", 1);
-questionsSlideInput.setAttribute("max", 1);
-// questionsSlideInput.value = 0;
-
-const questionsSlideDetails = document.createElement("datalist");
-
-const howManyQuestionsCount = document.createElement("div");
-howManyQuestionsCount.id = "howManyQuestionsCount";
-howManyQuestionsCount.innerText = 0;
-
-const kerdesElement = document.createElement("p");
-kerdesElement.innerText = "kérdés";
-howManyQuestionsCount.appendChild(kerdesElement);
-
-questionsSlideDiv.appendChild(howManyDoYouWantElement);
-questionsSlideDiv.appendChild(questionsSlideInput);
-questionsSlideDiv.appendChild(questionsSlideDetails);
-questionsSlideDiv.appendChild(howManyQuestionsCount);
-
+// view
 function displayFirstPage(data){
+    // fill categories
+    const categories = [];
+    for (let question of data){
+        if (!categories.includes(question.category)){
+            categories.push(question.category);
+        }
+    }
+
+    const welcomeElement = document.createElement("h1");
+    welcomeElement.classList.add("firstPage");
+    welcomeElement.id = "welcome";
+    welcomeElement.innerText = "Üdv a PA quizben!";
+    
+    const categoriesElement = document.createElement("div");
+    categoriesElement.classList.add("firstPage");
+    categoriesElement.id = "categories"
+    
+    const chooseThemesElement = document.createElement("h4");
+    chooseThemesElement.id = "chooseThemes";
+    chooseThemesElement.classList.add("firstPage");
+    chooseThemesElement.innerText = "VÁLASSZ TÉMÁKAT:"
+    
+    for (let cat of categories){
+        let count = 0;
+        for (let q of data){
+            if (q.category === cat){
+                count++;
+            }
+        }
+    
+        const categoryElement = document.createElement("div");
+        categoryElement.innerText = cat;
+        categoryElement.classList.add("firstPage");
+        categoriesElement.appendChild(categoryElement);
+    
+        const catCheckBox = document.createElement("input");
+        catCheckBox.setAttribute("type", "checkbox");
+        catCheckBox.id = cat;
+        catCheckBox.classList.add("firstPage");
+        catCheckBox.classList.add("checkBox")
+        categoryElement.appendChild(catCheckBox);
+    
+        const countElement = document.createElement("div");
+        countElement.classList.add("categoryCount");
+        countElement.id = "categoryCount";
+        countElement.innerText = count;
+        categoryElement.appendChild(countElement);
+    }
+    
+    const checkAllElement = document.createElement("div");
+    checkAllElement.classList.add("firstPage");
+    checkAllElement.classList.add("checkAll")
+    checkAllElement.innerText = "ÖSSZES TÉMA: "
+    
+    const checkAllBox = document.createElement("input");
+    checkAllBox.classList.add("firstPage");
+    checkAllBox.setAttribute("type", "checkbox");
+    checkAllBox.id = "checkAllBox";
+    // checkAllBox.classList.add("checkBox")
+    checkAllBox.classList.add("checkAllBox")
+    checkAllElement.appendChild(checkAllBox);
+    
+    categoriesElement.appendChild(checkAllElement);
+    
+    const maxQuestionCountElement = document.createElement("div");
+    maxQuestionCountElement.id = "maxQuestionCount"
+    maxQuestionCountElement.classList.add("firstPage");
+    maxQuestionCountElement.classList.add("maxQuestionCount");
+    maxQuestionCountElement.innerText = "MAX: " + maxQuestionCount + " kérdés";
+    
+    
+    goButton.setAttribute("onmousedown", "audio.play()");
+    
+    const questionsSlideDiv = document.createElement(`div`);
+    questionsSlideDiv.classList.add("firstPage");
+    questionsSlideDiv.id = "slide"
+    
+    const howManyDoYouWantElement = document.createElement("p");
+    howManyDoYouWantElement.classList.add("firstPage");
+    howManyDoYouWantElement.innerText = "Milyen hosszú legyen a teszt?"
+    
+    const questionsSlideInput = document.createElement("input");
+    questionsSlideInput.classList.add("firstPage");
+    questionsSlideInput.id = "howManyQuestionsInput";
+    questionsSlideInput.setAttribute("type", "range");
+    questionsSlideInput.setAttribute("min", 1);
+    questionsSlideInput.setAttribute("max", 1);
+    // questionsSlideInput.value = 0;
+    
+    const questionsSlideDetails = document.createElement("datalist");
+    questionsSlideDetails.id = "details"
+    questionsSlideDetails.classList.add("firstPage");
+    
+    const howManyQuestionsCount = document.createElement("div");
+    howManyQuestionsCount.classList.add("firstPage");
+    howManyQuestionsCount.id = "howManyQuestionsCount";
+    howManyQuestionsCount.innerText = 0;
+    
+    const kerdesElement = document.createElement("p");
+    kerdesElement.classList.add("firstPage");
+    kerdesElement.innerText = "kérdés";
+    howManyQuestionsCount.appendChild(kerdesElement);
+    
+    questionsSlideDiv.appendChild(howManyDoYouWantElement);
+    questionsSlideDiv.appendChild(questionsSlideInput);
+    questionsSlideDiv.appendChild(questionsSlideDetails);
+    questionsSlideDiv.appendChild(howManyQuestionsCount);
+    
     rootElement.appendChild(welcomeElement);
     goButton.innerText = "OK, LET'S GO!"
     rootElement.appendChild(chooseThemesElement);
@@ -117,191 +131,30 @@ function displayFirstPage(data){
     rootElement.appendChild(goButton);
     rootElement.appendChild(questionsSlideDiv);
     rootElement.appendChild(maxQuestionCountElement);
-    
-}
-
-const questionElement = document.createElement("h2");
-questionElement.id = "question";
-
-const explanationElement = document.createElement("p");
-explanationElement.id = "explanation";
-explanationElement.innerText = "Írd le a választ magadnak röviden, a saját kulcs-szavaiddal,\n Majd nyomd meg a CHECK gombot, hogy megnézd más mit írt!"
-
-const answerInputElement = document.createElement("textarea");
-answerInputElement.id = "answerInput";
-
-
-
-const yourAnswerElement = document.createElement("div");
-yourAnswerElement.id = "yourAnswer";
-
-const answerTitle = document.createElement("p");
-answerTitle.id = "answerTitle"
-answerTitle.innerText = "A te leírt válaszod:"
-yourAnswerElement.appendChild(answerTitle);
-
-const yourAnswer = document.createElement("p");
-yourAnswerElement.appendChild(yourAnswer);
-
-const errorElement = document.createElement("p");
-errorElement.id = "error";
-
-const percentageElement = document.createElement("div");
-percentageElement.classList.add("info");
-const percentageNumber = document.createElement("h2");
-const percentageQuestionCount = document.createElement("p");
-percentageElement.appendChild(percentageNumber);
-percentageElement.appendChild(percentageQuestionCount);
-
-const whereWeAreElement = document.createElement("div");
-whereWeAreElement.classList.add("qinf");
-whereWeAreElement.classList.add("info");
-const countQuestionsElement = document.createElement("h1");
-const countQuestionsTitle = document.createElement("p");
-countQuestionsTitle.innerText = "kérdés"
-whereWeAreElement.appendChild(countQuestionsElement);
-whereWeAreElement.appendChild(countQuestionsTitle);
-
-
-function randomQuestion(allQuestionsToChooseFrom){
-    const answer = allQuestionsToChooseFrom[Math.floor(Math.random() * allQuestionsToChooseFrom.length)];
-    for (let i = 0; i < allQuestionsToChooseFrom.length; i++){
-        if (allQuestionsToChooseFrom[i].question === answer.question){
-            allQuestionsToChooseFrom.splice(i, 1);
-        }
-    }
-    
-    return answer; 
-}
-
-function askQuestionAndAnswer(allQuestionsToChooseFrom){
-    currQuestionCount++;
-    currentQuestion = randomQuestion(allQuestionsToChooseFrom);
-    
-    rootElement.innerHTML = "";
-    rootElement.appendChild(questionElement);
-    questionElement.innerText = currentQuestion.question;
-    
-    rootElement.appendChild(answerInputElement);
-    rootElement.appendChild(explanationElement);
-    rootElement.appendChild(goButton);
-    goButton.innerText = "CHECK ANSWER"
-    goButton.classList.add("answer");
-    
-    let sum = 0;
-    for (let qSoFar of questionsSoFar){
-        if(qSoFar.known === "yes"){
-            sum++
-        }
-    }
-    if(questionsSoFar.length == 0){
-        percentageNumber.innerText = "0%";
-    } else {
-        percentageNumber.innerText = (sum / questionsSoFar.length)*100 + "%";
-    }
-
-    percentageQuestionCount.innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
-
-    rootElement.appendChild(percentageElement);
-    
-    countQuestionsElement.innerText = currQuestionCount + " / " + allQuestionsCount;
-    rootElement.appendChild(whereWeAreElement);
-    
-    questionsSoFar.push(currentQuestion);
-}
-
-const askIfGoodOrNo = document.createElement("div");
-askIfGoodOrNo.id = "yesOrNo";
-askIfGoodOrNo.innerText = "Jól tudtad?\n(Nem számít mit írtál le...)"
-
-const yesButtonElement = document.createElement("button");
-yesButtonElement.id = "yes";
-yesButtonElement.innerText = "IGEN"
-askIfGoodOrNo.appendChild(yesButtonElement);
-
-const noButtonElement = document.createElement("button");
-noButtonElement.id = "no";
-noButtonElement.innerText = "NEM"
-askIfGoodOrNo.appendChild(noButtonElement);
-
-
-
-function displayAnswerPage(currentQuestion){
-    if (document.getElementById("error") != undefined){
-        rootElement.removeChild(errorElement);
-    }
-    rootElement.removeChild(answerInputElement)
-    rootElement.removeChild(explanationElement);
-    goButton.classList.remove("answer");
-    goButton.innerText = "NEXT QUESTION"
-    rootElement.removeChild(goButton);
-    
-    yourAnswer.innerText = answerInputElement.value
-    answerInputElement.value = "";
-    rootElement.appendChild(yourAnswerElement);
-    
-    // console.log(currentQuestion);
-    
-    for (let i = 0; i < currentQuestion.answers.length; i++){
-        const answerOfSomeOneElement = document.createElement("div");
-        answerOfSomeOneElement.id = "answersSoFar";
-
-        const answerName = document.createElement("p");
-        answerName.innerText = currentQuestion.answers[i].name;
-        answerName.classList.add("answerName");
-        answerOfSomeOneElement.appendChild(answerName);
-    
-        const answerOfSomeone = document.createElement("p");
-        answerOfSomeone.innerText = currentQuestion.answers[i].answer;
-        answerOfSomeOneElement.appendChild(answerOfSomeone);
-        
-        rootElement.appendChild(answerOfSomeOneElement);
-    }
-
-
-    rootElement.appendChild(askIfGoodOrNo);
-}
-
-const endScreenElement = document.createElement("h1");
-endScreenElement.id = "endScreen"
-endScreenElement.innerText = "VÉGEREDMÉNY";
-
-function displayScorePage(rootElement){
-    rootElement.innerHTML = ""; 
-    let sum = 0;
-    for (let qSoFar of questionsSoFar){
-        if(qSoFar.known === "yes"){
-            sum++
-        }
-    }
-    if(questionsSoFar.length == 0){
-        percentageNumber.innerText = "0%";
-    } else {
-        percentageNumber.innerText = (sum / questionsSoFar.length)*100 + "%";
-    }
-
-    percentageQuestionCount.innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
-
-    rootElement.appendChild(percentageElement);
-    percentageElement.classList.add("endPage");
-    percentageElement.classList.add("endRight");
-
-    
-    countQuestionsElement.innerText = currQuestionCount + " / " + allQuestionsCount;
-    rootElement.appendChild(whereWeAreElement);
-    whereWeAreElement.classList.add("endLeft");
-
-    rootElement.appendChild(endScreenElement);
-
-}
-
-const init = ()=>{
-    displayFirstPage(data);
 
     categoriesElement.addEventListener("change", (e)=>{
         if (choosenCategories.length === 0){
             howManyQuestionsCount.innerText = 0;
             howManyQuestionsCount.appendChild(kerdesElement);
+        }
+    })
+
+    goButton.addEventListener("click", (e)=>{
+        if(!goButton.classList.contains("answer") && questionsSlideInput.value != 0 && maxQuestionCount != 0){
+            allQuestionsCount = questionsSlideInput.value;
+            for (let cat of choosenCategories){
+                for (let q of data){
+                    if (q.category === cat){
+                        allQuestionsToChooseFrom.push(q);
+                    }
+                }
+            }
+
+            allQuestionsCount = questionsSlideInput.value;
+            // console.log(allQuestionsToChooseFrom)
+            askQuestionAndAnswer(allQuestionsToChooseFrom);
+        } else if (goButton.classList.contains("answer")){          
+            displayAnswerPage(currentQuestion);
         }
     })
 
@@ -391,33 +244,109 @@ const init = ()=>{
         howManyQuestionsCount.appendChild(kerdesElement);
             
     })
+    
+    return rootElement;
+}
 
-    goButton.addEventListener("click", (e)=>{
-        if(!goButton.classList.contains("answer") && questionsSlideInput.value != 0 && maxQuestionCount != 0){
-            allQuestionsCount = questionsSlideInput.value;
-            for (let cat of choosenCategories){
-                for (let q of data){
-                    if (q.category === cat){
-                        allQuestionsToChooseFrom.push(q);
-                    }
-                }
-            }
-
-            allQuestionsCount = questionsSlideInput.value;
-            // console.log(allQuestionsToChooseFrom)
-            askQuestionAndAnswer(allQuestionsToChooseFrom);
-        } else if (goButton.classList.contains("answer")){
-            if (answerInputElement.value.length < 2){
-                if (document.getElementById("error") == undefined){
-                    errorElement.innerText = "Kérlek írj valamit!"
-                    rootElement.appendChild(errorElement);
-                }
-            } else {
-                
-                displayAnswerPage(currentQuestion);
-            }
+function randomQuestion(allQuestionsToChooseFrom){
+    const answer = allQuestionsToChooseFrom[Math.floor(Math.random() * allQuestionsToChooseFrom.length)];
+    for (let i = 0; i < allQuestionsToChooseFrom.length; i++){
+        if (allQuestionsToChooseFrom[i].question === answer.question){
+            allQuestionsToChooseFrom.splice(i, 1);
         }
-    })
+    }
+    
+    return answer; 
+}
+
+function askQuestionAndAnswer(allQuestionsToChooseFrom){
+    if (document.getElementById("categories") != undefined){
+        document.getElementById("maxQuestionCount").remove();
+        document.getElementById("details").remove();
+        document.getElementById("categories").remove();
+        document.getElementById("chooseThemes").remove();
+        document.getElementById("howManyQuestionsCount").remove();
+        document.getElementById("howManyQuestionsInput").remove();
+        for (let E of document.getElementsByClassName("firstPage")){
+            E.remove();
+        };
+    }
+    
+    
+    if (document.getElementById("yes") != undefined){
+        document.getElementById("yes").remove();
+        document.getElementById("no").remove();
+        document.getElementById("no").remove();
+    }
+    
+    const questionElement = document.createElement("h2");
+    questionElement.id = "question";
+
+    const explanationElement = document.createElement("p");
+    explanationElement.id = "explanation";
+    explanationElement.innerText = "Írd le a választ magadnak röviden, a saját kulcs-szavaiddal,\n Majd nyomd meg a CHECK gombot, hogy megnézd más mit írt!"
+
+    const answerInputElement = document.createElement("textarea");
+    answerInputElement.id = "answerInput";
+    
+    currQuestionCount++;
+    currentQuestion = randomQuestion(allQuestionsToChooseFrom);
+    
+    // rootElement.innerHTML = "";
+    rootElement.appendChild(questionElement);
+    questionElement.innerText = currentQuestion.question;
+    
+    rootElement.appendChild(answerInputElement);
+    rootElement.appendChild(explanationElement);
+    rootElement.appendChild(goButton);
+    goButton.innerText = "CHECK ANSWER"
+    
+    if(!goButton.classList.contains("answer")){
+        goButton.classList.add("answer");
+    }
+
+    const percentageElement = document.createElement("div");
+    percentageElement.id = "percentageElement";
+    percentageElement.classList.add("info");
+    const percentageNumber = document.createElement("h2");
+    percentageNumber.id = "percentageNumber";
+    const percentageQuestionCount = document.createElement("p");
+    percentageQuestionCount.id = "percentageQuestionCount";
+    
+    percentageElement.appendChild(percentageNumber);
+    percentageElement.appendChild(percentageQuestionCount);
+
+    const whereWeAreElement = document.createElement("div");
+    whereWeAreElement.id = "whereWeAreElement";
+    whereWeAreElement.classList.add("qinf");
+    whereWeAreElement.classList.add("info");
+    const countQuestionsElement = document.createElement("h1");
+    countQuestionsElement.id = "countQuestionsElement"
+    const countQuestionsTitle = document.createElement("p");
+    countQuestionsTitle.innerText = "kérdés"
+    whereWeAreElement.appendChild(countQuestionsElement);
+    whereWeAreElement.appendChild(countQuestionsTitle);
+    
+    let sum = 0;
+    for (let qSoFar of questionsSoFar){
+        if(qSoFar.known === "yes"){
+            sum++
+        }
+    }
+    if(questionsSoFar.length == 0){
+        percentageNumber.innerText = "0%";
+    } else {
+        percentageNumber.innerText = (sum / questionsSoFar.length)*100 + "%";
+    }
+
+    percentageQuestionCount.innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
+
+    rootElement.appendChild(percentageElement);
+    
+    countQuestionsElement.innerText = currQuestionCount + " / " + allQuestionsCount;
+    rootElement.appendChild(whereWeAreElement);
+    
+    questionsSoFar.push(currentQuestion);
 
     answerInputElement.addEventListener("keydown", (e)=>{
         if (document.getElementById("error") != undefined){
@@ -427,6 +356,69 @@ const init = ()=>{
             goButton.click();
         }
     })
+    return rootElement;
+}
+
+function displayAnswerPage(currentQuestion){
+
+    document.getElementById("explanation").remove();
+    rootElement.removeChild(goButton);
+    
+    const yourAnswerElement = document.createElement("div");
+    yourAnswerElement.id = "yourAnswer";
+
+    const answerTitle = document.createElement("p");
+    answerTitle.id = "answerTitle"
+    answerTitle.innerText = "A te leírt válaszod:"
+    yourAnswerElement.appendChild(answerTitle);
+
+    const yourAnswer = document.createElement("p");
+    yourAnswer.id = "yourAnswerP";
+    yourAnswerElement.appendChild(yourAnswer);
+
+    
+
+    yourAnswer.innerText = document.getElementById("answerInput").value
+    document.getElementById("answerInput").remove();
+    rootElement.appendChild(yourAnswerElement);
+
+    const askIfGoodOrNo = document.createElement("div");
+    askIfGoodOrNo.id = "yesOrNo";
+    askIfGoodOrNo.innerText = "Jól tudtad?\n(Nem számít mit írtál le...)"
+
+    const yesButtonElement = document.createElement("button");
+    yesButtonElement.id = "yes";
+    yesButtonElement.innerText = "IGEN"
+    askIfGoodOrNo.appendChild(yesButtonElement);
+
+    const noButtonElement = document.createElement("button");
+    noButtonElement.id = "no";
+    noButtonElement.innerText = "NEM"
+    askIfGoodOrNo.appendChild(noButtonElement);
+
+
+    
+    // console.log(currentQuestion);
+    
+    for (let i = 0; i < currentQuestion.answers.length; i++){
+        const answerOfSomeOneElement = document.createElement("div");
+        answerOfSomeOneElement.id = "answersSoFar";
+        answerOfSomeOneElement.classList.add("answersSoFar")
+
+        const answerName = document.createElement("p");
+        answerName.innerText = currentQuestion.answers[i].name;
+        answerName.classList.add("answerName");
+        answerOfSomeOneElement.appendChild(answerName);
+    
+        const answerOfSomeone = document.createElement("p");
+        answerOfSomeone.innerText = currentQuestion.answers[i].answer;
+        answerOfSomeOneElement.appendChild(answerOfSomeone);
+        
+        rootElement.appendChild(answerOfSomeOneElement);
+    }
+
+
+    rootElement.appendChild(askIfGoodOrNo);
 
     yesButtonElement.addEventListener("click", (e)=>{
         questionsSoFar[questionsSoFar.length-1].known = "yes";
@@ -449,6 +441,51 @@ const init = ()=>{
             displayScorePage(rootElement);
         }
     })
+
+}
+
+function displayScorePage(rootElement){
+    // rootElement.innerHTML = "";
+    goButton.remove();
+    document.getElementById("yourAnswer").remove();
+    document.getElementById("yesOrNo").remove();
+    document.getElementById("question").remove();
+    for (let e of document.querySelectorAll(".answersSoFar")){
+        e.remove();
+    }
+
+    const endScreenElement = document.createElement("h1");
+    endScreenElement.id = "endScreen"
+    endScreenElement.innerText = "VÉGEREDMÉNY";
+    
+    let sum = 0;
+    for (let qSoFar of questionsSoFar){
+        if(qSoFar.known === "yes"){
+            sum++
+        }
+    }
+    if(questionsSoFar.length == 0){
+        document.getElementById("percentageNumber").innerText = "0%";
+    } else {
+        document.getElementById("percentageNumber").innerText = (sum / questionsSoFar.length)*100 + "%";
+    }
+
+    document.getElementById("percentageQuestionCount").innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
+
+    document.getElementById("percentageElement").classList.add("endPage");
+    document.getElementById("percentageElement").classList.add("endRight");
+
+    
+    document.getElementById("countQuestionsElement").innerText = currQuestionCount + " / " + allQuestionsCount;
+    
+    document.getElementById("whereWeAreElement").classList.add("endLeft");
+
+    rootElement.appendChild(endScreenElement);
+
+}
+
+const init = ()=>{
+    displayFirstPage(data);
 }
 
 window.addEventListener("load", init);
