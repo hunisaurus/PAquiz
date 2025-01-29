@@ -119,8 +119,6 @@ input[type="range"] {
     background-color: blueviolet;
 }
 
-
-
 .checkAll{
     /* transform: translate(648%, -500%); */
     border-color: brown;
@@ -174,8 +172,10 @@ p{
 
 #question{
     position: relative;
-    width: 100%;
+    width: 80%;
     transition: color, ease-out 0.5s, color ease-out 0.3s;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
 
 #explanation{
