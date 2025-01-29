@@ -298,7 +298,7 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
     rootElement.appendChild(answerInputElement);
     rootElement.appendChild(explanationElement);
     rootElement.appendChild(goButton);
-    goButton.innerText = "CHECK ANSWER"
+    goButton.innerText = "CHECK ANSWERS"
     
     if(!goButton.classList.contains("answer")){
         goButton.classList.add("answer");
@@ -464,7 +464,7 @@ function displayScorePage(rootElement){
         document.getElementById("percentageNumber").innerText = (sum / questionsSoFar.length)*100 + "%";
     }
 
-    document.getElementById("percentageQuestionCount").innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
+    document.getElementById("percentageQuestionCount").innerText = sum + " / " + questionsSoFar.length + " választ tudtál";
     document.getElementById("percentageElement").classList.add("endPage");
     document.getElementById("percentageElement").classList.add("endRight");
     document.getElementById("countQuestionsElement").innerText = currQuestionCount + " / " + allQuestionsCount;
