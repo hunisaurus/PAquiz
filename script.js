@@ -274,9 +274,12 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
     
     
     if (document.getElementById("yes") != undefined){
-        document.getElementById("yes").remove();
-        document.getElementById("no").remove();
-        document.getElementById("no").remove();
+        document.getElementById("yourAnswer").remove();
+        document.getElementById("yesOrNo").remove();
+        document.getElementById("question").remove();
+        for (let e of document.querySelectorAll(".answersSoFar")){
+            e.remove();
+        }
     }
     
     const questionElement = document.createElement("h2");
@@ -305,27 +308,32 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
         goButton.classList.add("answer");
     }
 
-    const percentageElement = document.createElement("div");
-    percentageElement.id = "percentageElement";
-    percentageElement.classList.add("info");
-    const percentageNumber = document.createElement("h2");
-    percentageNumber.id = "percentageNumber";
-    const percentageQuestionCount = document.createElement("p");
-    percentageQuestionCount.id = "percentageQuestionCount";
+    if (document.getElementById("percentageElement") == undefined){
+        const percentageElement = document.createElement("div");
+        percentageElement.id = "percentageElement";
+        percentageElement.classList.add("info");
+        const percentageNumber = document.createElement("h2");
+        percentageNumber.id = "percentageNumber";
+        const percentageQuestionCount = document.createElement("p");
+        percentageQuestionCount.id = "percentageQuestionCount";
+        
+        percentageElement.appendChild(percentageNumber);
+        percentageElement.appendChild(percentageQuestionCount);
     
-    percentageElement.appendChild(percentageNumber);
-    percentageElement.appendChild(percentageQuestionCount);
-
-    const whereWeAreElement = document.createElement("div");
-    whereWeAreElement.id = "whereWeAreElement";
-    whereWeAreElement.classList.add("qinf");
-    whereWeAreElement.classList.add("info");
-    const countQuestionsElement = document.createElement("h1");
-    countQuestionsElement.id = "countQuestionsElement"
-    const countQuestionsTitle = document.createElement("p");
-    countQuestionsTitle.innerText = "kérdés"
-    whereWeAreElement.appendChild(countQuestionsElement);
-    whereWeAreElement.appendChild(countQuestionsTitle);
+        const whereWeAreElement = document.createElement("div");
+        whereWeAreElement.id = "whereWeAreElement";
+        whereWeAreElement.classList.add("qinf");
+        whereWeAreElement.classList.add("info");
+        const countQuestionsElement = document.createElement("h1");
+        countQuestionsElement.id = "countQuestionsElement"
+        const countQuestionsTitle = document.createElement("p");
+        countQuestionsTitle.innerText = "kérdés"
+        whereWeAreElement.appendChild(countQuestionsElement);
+        whereWeAreElement.appendChild(countQuestionsTitle);
+        rootElement.appendChild(percentageElement);
+        rootElement.appendChild(whereWeAreElement);
+        
+    }
     
     let sum = 0;
     for (let qSoFar of questionsSoFar){
@@ -334,17 +342,15 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
         }
     }
     if(questionsSoFar.length == 0){
-        percentageNumber.innerText = "0%";
+        document.getElementById("percentageNumber").innerText = "0%";
     } else {
-        percentageNumber.innerText = (sum / questionsSoFar.length)*100 + "%";
+        document.getElementById("percentageNumber").innerText = (sum / questionsSoFar.length)*100 + "%";
     }
 
-    percentageQuestionCount.innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
+    document.getElementById("percentageQuestionCount").innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
 
-    rootElement.appendChild(percentageElement);
     
-    countQuestionsElement.innerText = currQuestionCount + " / " + allQuestionsCount;
-    rootElement.appendChild(whereWeAreElement);
+    document.getElementById("countQuestionsElement").innerText = currQuestionCount + " / " + allQuestionsCount;
     
     questionsSoFar.push(currentQuestion);
 
