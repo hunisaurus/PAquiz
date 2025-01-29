@@ -18,6 +18,7 @@ main{
     align-items: center;
     position: relative;
     text-align: center;
+    justify-content: center;
     display: block;
     left: 50%;
     top: 0%;

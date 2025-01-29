@@ -3,11 +3,11 @@ import { data } from "./data.js";
 // console.log(data[0].question + data[49].question);
 
 const choosenCategories = [];
+const allQuestionsToChooseFrom = [];
+const questionsSoFar = [];
 let maxQuestionCount = 0;
 let allQuestionsCount = 0;
 let currQuestionCount = 0;
-const allQuestionsToChooseFrom = [];
-const questionsSoFar = [];
 let currentQuestion;
 
 const rootElement = document.getElementById("root");
@@ -341,7 +341,7 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom){
     if(questionsSoFar.length == 0){
         document.getElementById("percentageNumber").innerText = "0%";
     } else {
-        document.getElementById("percentageNumber").innerText = (sum / questionsSoFar.length)*100 + "%";
+        document.getElementById("percentageNumber").innerText = parseInt((sum / questionsSoFar.length)*10000)/100 + "%";
     }
 
     document.getElementById("percentageQuestionCount").innerText = sum + " / " + questionsSoFar.length + " válasz helyes";
