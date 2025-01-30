@@ -421,7 +421,7 @@ function displayAnswerPage(currentQuestion){
         questionsSoFar[questionsSoFar.length-1].known = "yes";
         
         console.log(currQuestionCount);
-        console.log(allQuestionsCount);
+        console.log(allQuestionsToChooseFrom.length);
 
         if (currQuestionCount < allQuestionsCount){
             askQuestionAndAnswer(allQuestionsToChooseFrom);
