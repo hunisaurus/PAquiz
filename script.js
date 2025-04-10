@@ -388,32 +388,7 @@ function displayAnswerPage(currentQuestion) {
         document.getElementById("percentageElement").remove();
         document.getElementById("whereWeAreElement").remove();
     }
-    if (document.getElementById("percentageElement") == undefined) {
-        const percentageElement = document.createElement("div");
-        percentageElement.id = "percentageElement";
-        percentageElement.classList.add("info");
-        const percentageNumber = document.createElement("h2");
-        percentageNumber.id = "percentageNumber";
-        const percentageQuestionCount = document.createElement("p");
-        percentageQuestionCount.id = "percentageQuestionCount";
-
-        percentageElement.appendChild(percentageNumber);
-        percentageElement.appendChild(percentageQuestionCount);
-
-        const whereWeAreElement = document.createElement("div");
-        whereWeAreElement.id = "whereWeAreElement";
-        whereWeAreElement.classList.add("qinf");
-        whereWeAreElement.classList.add("info");
-        const countQuestionsElement = document.createElement("h1");
-        countQuestionsElement.id = "countQuestionsElement"
-        const countQuestionsTitle = document.createElement("p");
-        countQuestionsTitle.innerText = "kérdés"
-        whereWeAreElement.appendChild(countQuestionsElement);
-        whereWeAreElement.appendChild(countQuestionsTitle);
-        rootElement.appendChild(percentageElement);
-        rootElement.appendChild(whereWeAreElement);
-
-    }
+    
     document.getElementById("explanation").remove();
     rootElement.removeChild(goButton);
 
@@ -508,6 +483,32 @@ function displayScorePage(rootElement) {
         e.remove();
     }
 
+    if (document.getElementById("percentageElement") == undefined) {
+        const percentageElement = document.createElement("div");
+        percentageElement.id = "percentageElement";
+        percentageElement.classList.add("info");
+        const percentageNumber = document.createElement("h2");
+        percentageNumber.id = "percentageNumber";
+        const percentageQuestionCount = document.createElement("p");
+        percentageQuestionCount.id = "percentageQuestionCount";
+
+        percentageElement.appendChild(percentageNumber);
+        percentageElement.appendChild(percentageQuestionCount);
+
+        const whereWeAreElement = document.createElement("div");
+        whereWeAreElement.id = "whereWeAreElement";
+        whereWeAreElement.classList.add("qinf");
+        whereWeAreElement.classList.add("info");
+        const countQuestionsElement = document.createElement("h1");
+        countQuestionsElement.id = "countQuestionsElement"
+        const countQuestionsTitle = document.createElement("p");
+        countQuestionsTitle.innerText = "kérdés"
+        whereWeAreElement.appendChild(countQuestionsElement);
+        whereWeAreElement.appendChild(countQuestionsTitle);
+        rootElement.appendChild(percentageElement);
+        rootElement.appendChild(whereWeAreElement);
+
+    }
     const endScreenElement = document.createElement("h1");
     endScreenElement.id = "endScreen"
     endScreenElement.classList.add("textChange")
