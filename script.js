@@ -197,6 +197,8 @@ function displayFirstPage(data) {
             }
 
             questionsSlideInput.setAttribute("max", maxQuestionCount);
+            questionsSlideInput.setAttribute("value", maxQuestionCount);
+            howManyQuestionsCount.innerText = maxQuestionCount + " kérdés";
             maxQuestionCountElement.innerText = "MAX: " + maxQuestionCount + " kérdés";
             questionsSlideDetails.innerHTML = "";
 
@@ -204,20 +206,20 @@ function displayFirstPage(data) {
                 for (let i = 1; i <= maxQuestionCount; i++) {
                     const optionElement = document.createElement("option");
                     optionElement.setAttribute("value", i.toString());
-                    optionElement.setAttribute("label", i.toString());
+                    optionElement.setAttribute("label", "|");
                     questionsSlideDetails.appendChild(optionElement);
                 }
             } else if (maxQuestionCount > 20 && maxQuestionCount < 41) {
                 for (let i = 1; i <= maxQuestionCount; i += 2) {
                     const optionElement = document.createElement("option");
                     optionElement.setAttribute("value", i.toString());
-                    optionElement.setAttribute("label", i.toString());
+                    optionElement.setAttribute("label", "|");
                     questionsSlideDetails.appendChild(optionElement);
                 }
             } else if (maxQuestionCount > 40 && maxQuestionCount < 51) {
                 const option1Element = document.createElement("option");
                 option1Element.setAttribute("value", (1).toString());
-                option1Element.setAttribute("label", (1).toString());
+                option1Element.setAttribute("label", "|");
                 questionsSlideDetails.appendChild(option1Element);
 
                 for (let i = 5; i <= maxQuestionCount; i += 5) {

@@ -86,7 +86,7 @@ button:hover {
 .setup {
     display: flex;
     flex-direction: row;
-    gap: 1rem
+    gap: 2rem
 }
 
 .setup-right {
@@ -440,6 +440,7 @@ textarea {
 
     .setup-right {
         align-items: center;
+        gap:1rem
     }
 
     .checkBox {
@@ -471,7 +472,7 @@ textarea {
     }
 
     .setup {
-        gap: 0.2rem
+        gap: 2rem
     }
 
     .categories {
@@ -540,5 +541,7 @@ textarea {
     .categories{
         transform: translate(-10%, 0%);
     }
+
+    
 
 }
