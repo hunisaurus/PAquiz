@@ -320,7 +320,7 @@ kezelhető.`;
         console.log("Hello, world!");
       }
 
-      greet(sayHello);  // Calls the sayHello functionű
+      greet(sayHello);  // Calls the sayHello function
       Common higher-order functions in JavaScript:
       map()
       filter()
