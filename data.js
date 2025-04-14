@@ -2771,6 +2771,80 @@ Magyarázat:
         question: "What are React Contexts? Which use cases are they suitable for?",
         answers: [
             {
+                name: "Viki",
+                answer: `Normál esetben, ha egy adatot egy magasabb szintű komponensből egy mélyebben lévő komponensnek kell továbbadni, akkor minden köztes komponensnek át kell adnia azt a props segítségével. Ezt nevezzük prop drillingnek, ami bonyolulttá teheti a kódot.
+
+    A React Context ezt a problémát oldja meg azzal, hogy egy globális állapotot hoz létre, amelyet a fa mélyebb komponensei közvetlenül elérhetnek anélkül, hogy a köztes komponenseken át kellene adni.
+
+    Hogyan működik a React Context?
+      - A React Context három fő elemből áll:
+      - Context létrehozása – React.createContext()
+      - Context Provider (Ellátó) – A magasabb szitű komponens, amely az adatokat biztosítja.
+      - Context Consumer (Fogyasztó) – Azok a komponensek, amelyek az adatokat elérik.
+
+    Példa egy React Context használatára:
+      import React, { createContext, useContext, useState } from "react";
+
+      // 1. Létrehozunk egy Context-et
+      const ThemeContext = createContext();
+
+      function ThemeProvider({ children }) {
+        const [theme, setTheme] = useState("light");
+
+        return (
+          <ThemeContext.Provider value={{ theme, setTheme }}>
+            {children}
+          </ThemeContext.Provider>
+        );
+      }
+
+      // 2. Egy komponens, amely felhasználja a Context-et
+      function ThemedButton() {
+        const { theme, setTheme } = useContext(ThemeContext);
+        
+        return (
+          <button
+            style={{
+              background: theme === "light" ? "#fff" : "#333",
+              color: theme === "light" ? "#000" : "#fff",
+            }}
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          >
+            Toggle Theme
+          </button>
+        );
+      }
+
+      // 3. Az alkalmazásban használjuk a Context-et
+      function App() {
+        return (
+          <ThemeProvider>
+            <ThemedButton />
+          </ThemeProvider>
+        );
+      }
+
+      export default App;
+
+    Ebben a példában a ThemeProvider tárolja a témát (light vagy dark), és a ThemedButton közvetlenül eléri azt a useContext segítségével.
+
+    Milyen esetekben érdemes használni a React Context-et?
+      A React Context akkor hasznos, ha egy állapotot vagy adatot több komponensben kell elérni anélkül, hogy minden szinten át kellene adni props-ként.
+
+    Tipikus felhasználási esetek:
+      - Téma (dark/light mode)
+      - Felhasználói autentikáció (bejelentkezett felhasználó adatai)
+      - Nyelvi beállítások (i18n, többnyelvű támogatás)
+      - Globális állapot (például bevásárlókosár egy webshopban)
+      - Ha csak egy vagy két szinten kell adatot továbbadni, akkor nem szükséges a Context, ilyenkor elég a props. Ha viszont mélyebb struktúrákban kell - adatot kezelni, a React Context jó megoldás lehet.
+
+    Összegzés
+      - A React Context segít elkerülni a prop drilling-et.
+      - Kiválóan alkalmas globális állapotok kezelésére, például téma, autentikáció vagy nyelvi beállítások.
+      - Az adatok megosztása a useContext segítségével gyors és hatékony.
+      - Ha egy állapot gyakran változik és sok komponens használja, akkor jobb lehet a Redux vagy a Zustand, mert a React Context nem teljes értékű állapotkezelő.`
+            },
+            {
                 name: "ChatGPT",
                 answer: "React Context is a way to share state or values globally across a component tree—without prop drilling.\n\nIt’s best used for global data like:\n- Auth state (logged-in user)\n- Theme (light/dark mode)\n- Language preferences\n\nIt simplifies state management in medium-sized apps."
             }
