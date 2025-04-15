@@ -416,7 +416,7 @@ Miért jó?
         answers: [
             {
                 name: "Viki",
-                answers: `Az aszinkronitás azt jelenti, hogy bizonyos műveletek (például hálózati kérések, időzítők) nem akadályozzák a program további végrehajtását.
+                answer: `Az aszinkronitás azt jelenti, hogy bizonyos műveletek (például hálózati kérések, időzítők) nem akadályozzák a program további végrehajtását.
   Ahelyett, hogy egy hosszú művelet befejeződésére várna a program, folytatja a kód futtatását, és később kezeli az eredményt.
 
   A JavaScript az eseményciklus (event loop) segítségével kezeli az aszinkron műveleteket, így a böngésző nem fagy le, és a felhasználói élmény folyamatos marad.
