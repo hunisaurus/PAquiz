@@ -526,7 +526,7 @@ function displayScorePage(rootElement) {
     if (questionsSoFar.length == 0) {
         document.getElementById("percentageNumber").innerText = "0%";
     } else {
-        document.getElementById("percentageNumber").innerText = (sum / questionsSoFar.length) * 100 + "%";
+        document.getElementById("percentageNumber").innerText = parseInt((sum / questionsSoFar.length) * 10000) / 100 + "%";
     }
 
     rootElement.appendChild(endScreenElement);
