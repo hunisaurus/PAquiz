@@ -295,44 +295,22 @@ Miért jó?
         answers: [
             {
                 name: "Viki",
-                answer: `Az URL (Uniform Resource Locator) egy internetes cím, amely egy adott erőforrás elérésére szolgál.
-    Több részből áll, amelyek mind külön funkciót látnak el. 
+                answer: `A lekérdezési karakterlánc (query string) paramétere egy URL-ben hozzájárul a webalkalmazás funkcionalitásához azáltal, hogy lehetővé teszi adatok átadását weboldalak vagy API-k között. Általában kis mennyiségű adat, például felhasználói beállítások, keresési kifejezések, szűrők vagy hitelesítési tokenek továbbítására használják, anélkül hogy módosítanák az URL útvonalát.
 
-    1. Scheme:
-    - Meghatározza az adatátvitel módját.
-    - pl.: https://
-    - Communication protocol
-    - url.protocol
+  A query string paraméterek a ? szimbólum után következnek egy URL-ben, és kulcs-érték párok formájában (kulcs=érték) vannak megadva. Több paramétert az & szimbólum választ el egymástól.
+  Például: https://example.com/search?query=javascript&page=2
+  Ebben az esetben a query=javascript és a page=2 paraméterek segítenek a webalkalmazásnak a megfelelő keresési találatok megjelenítésében.
 
-    2. Host:
-    - Hoszt (Domain név vagy IP-cím), Azonosítja azt a szervert, ahol az oldal található.
-    - pl.: www.example.com
-    - Server domain name or IP
-    - url.host
+  API-k esetében a query paramétereket gyakran használják adatok szűrésére, rendezésére vagy lapozására. Például egy időjárás API így működhet:
+  https://api.weather.com/data?city=London&units=metric
+  Itt a city=London meghatározza a helyszínt, míg a units=metric beállítja a hőmérsékleti mértékegységet.
 
-    3. Port:
-    - Megadja a szerveren használt kommunikációs portot.
-    - pl.: ":8080"
-    - (Optional) Server port
-    . url.port
+  A query paraméterek egyszerűen használhatók, de biztonságosan kell kezelni őket, különösen érzékeny adatok esetén, mivel az URL-ben láthatók és könnyen módosíthatók a felhasználók által.
 
-    4. Path:
-    - Az erőforrás helyét jelöli a szerveren. Olyan, mint egy könyvtár vagy fájlszerkezet egy számítógépen.
-    - pl.: /path/to/page
-    - Resource location on server
-    - url.pathname
+  ANSWER ENG:
+  A query string parameter in a URL contributes to web application functionality by allowing data to be passed between web pages or APIs. It is typically used to send small amounts of data, such as user preferences, search terms, filters, or authentication tokens, without modifying the URL path.
 
-    5. Query:
-    - Extra adatokat küld a szervernek. ? jellel kezdődik, és kulcs-érték párokat tartalmaz &-el elválasztva.
-    - pl.: ?search=query	    
-    - (Optional) Parameters for the request
-    - url.search
-
-    6. Fragment:
-    - Egy adott részhez ugrik az oldalon belül. Nem küldődik el a szervernek, csak a böngésző használja.
-    - pl.: #section
-    - (Optional) In-page navigation
-    - url.hash`
+  Query string parameters follow the ? symbol in a URL and are structured as key-value pairs (key=value). Multiple parameters are separated by an & symbol.`
             },
             {
                 name: "ChatGPT",
