@@ -1,377 +1,949 @@
-
-
 const data = [
-    {
-        category: "Data Basics",
-        question: "Mik a különbségek az objektumok, tömbök és primitívek között JavaScriptben? Hogyan használjuk őket a programozásban?",
-        answers: "A primitívek maguk az értéktípusok, amíg az objektek, arrayek pedig a referencia értékekek tartalmazzák."
-    },
-    {
-        category: "Data Basics",
-        question: "How would you access the value of a specific key in an object?",
-        answers: "object.key"
-    },
-    {
-        category: "Data Basics",
-        question: "Explain the concept of key-value pairs in objects and how they differ from indexed elements in arrays.",
-        answers: "In an object you can reach a certain element by using it's key, while in an array you need to use the index. You can not iterate an object with a for of loop, but you can iterate it with a for loop or a for in loop"
-    },
-    {
-        category: "Data Basics",
-        question: "Describe a scenario where you would choose to use an object instead of an array, or vice versa, and explain your reasoning.",
-        answers: "Komplex adattípusoknál, mint például ami volt feladat a product list, és a neighbouring countries, ahol egy adott elemhez több féle infó tartozik - pl ár, hossz, név, évszám, stb. Szóval ahol komplex adatokat kell kezelni."
-    },
-    {
-        category: "Data Basics",
-        question: "How can you retrieve the first and last items of an array?",
-        answers: "[0]; [array.length-1];"
-    },
-    {
-        category: "Data Basics",
-        question: "Identify the five most commonly used primitive types in JavaScript, and provide examples demonstrating when and how to use them?",
-        answers: "string, number, boolean, undefined, null"
-    },
-    {
-        category: "Algorithm Basics",
-        question: "Provide examples of assignment operators in JavaScript.",
-        answers: "=, +=, -=, *=, /=, %=, **="
-    },
-    {
-        category: "Algorithm Basics",
-        question: "Name some of the arithmetic operators in JavaScript.",
-        answers: "+, -, *, /, %, --, ++, **"
-    },
-    {
-        category: "Algorithm Basics",
-        question: "What are the different comparison operators in JavaScript?",
-        answers: "<, >, ==, ===, !=, !==, <=, >="
-    },
-    {
-        category: "Algorithm Basics",
-        question: "Name a few logical operators used in JavaScript.",
-        answers: "&&, ||, !"
-    },
-    {
-        category: "Algorithm Basics",
-        question: "Explain the differences between a `for` loop, `for of` loop, and `for in` loop in JavaScript.",
-        answers: "Mindegyikkel iterálnuk.\nEgy for looppal meg az iteráció egy változóval történik, ami egy szám - gyakran i, aminek megadjuk a kezdő és záró értékét, illetve, hogy mekkora és milyen lépésekben változzon. Stringben, arrayben és objectben is használhatjuk. \nEgy for of loopban egy adott string vagy array elemein úgy iterálunk, hogy mindig az aktuális elem tölti ki a meghatározott változó nevét, amivel aztán dolgozunk az iterációban. For of loopot nem tudunk objectekre használni.\nEgy for in looppal objectben tudunk iterálni úgy, hogy az object aktuális key-e tölti ki a loopban definiált válozónk helyét minden iterációban."
-    },
-    {
-        category: "Algorithm Basics",
-        question: "If you can't use any built-in functions or methods, how would you calculate the average of values in an array?",
-        answers: "Összeadnám a tagok értékét, majd elosztanám a tagok számával."
-    },
-    {
-        category: "Function Basics",
-        question: "What is a function in JavaScript? Explain its purpose and how it is used in programming.",
-        answers: "Egy kód tömb (block), ami egy adott szerepet tölt be. Van egy return értéke, amit aztán használhatunk. Egy function-t létre kell hozni, majd meg kell hívni - általában egy adott értékkel, vagy callback function esetén egy másik functionnel. \nhoisting fogalma: a funcion declarációja előtt is már meg lehet hívni a functiont - ez a hoisting."
-    },
-    {
-        category: "Function Basics",
-        question: "Describe the different syntax elements that make up a JavaScript function.",
-        answers: "function + név + () + {} ---- arrow: ()=>{}"
-    },
-    {
-        category: "Function Basics",
-        question: "How do you pass arguments to a function? Explain the concept of parameter passing and provide an example.",
-        answers: "Amikor definiálom a functiont, paramétereket adhatok meg neki. A paraméterek helyére írom később az argúmentumokat amikor meghívom a functiont, és ezáltal az argumentumok használatával fog végigmenni a művelet."
-    },
-    {
-        category: "Function Basics",
-        question: "What is the difference between function expressions and function declarations? Provide examples of each.",
-        answers: "Amikor expression van, akkor nem hoistingolhatok, magyarul ha egy változóba mentem a functionomet, a változó deklarálása előtt nem hivatkozhatok rá, hiszen még nem létezik."
-    },
-    {
-        category: "Function Basics",
-        question: "Explain what a callback function is in JavaScript.",
-        answers: "Egy olyan function, aminek az argúmentuma egy másik function. Például az eventlistenerek callback functionök."
-    },
-    {
-        category: "Function Basics",
-        question: "What is the scope of variables in JavaScript functions? Explain the difference between local and global variables.",
-        answers: "Block scope, nested scope, shadowing, temporal dead zone, global scope. \nA scope határozza meg, hogy hol érvényes a variáns, amit létrehozunk. \nHa egy loopon, functionön belül hozunk például létre változót, azt az adott egységen kívül nem fogjuk elérni, mert lokális - \nazonban, ha mindenen kívül - globálisan - hozzuk létre, akkor elérhetjük functionön belül. \n Ha szeretnénk használni, vigyázni kell az elnevezésekkel, nehogy leárnyaljuk (shadowing) a function vagy a loop egyik paraméterével a belső scope-on a globális változót."
-    },
-    {
-        category: "Built-in Features",
-        question: "What are some commonly used built-in functions or methods in JavaScript for working with strings? Provide examples and explain their usage.",
-        answers: "typeof, toString(), \ncharAt(), toLowerCase(), toUpperCase(), includes(), indexOf(), startsWith(), endsWith(), \nsubstring(), slice(), split(), \n////match(), test(),"
-    },
-    {
-        category: "Built-in Features",
-        question: "Name at least five built-in functions or methods in JavaScript for manipulating arrays. Describe how each function/method works and provide an example for each.",
-        answers: "push(), pop(), slice(), splice(), join(), filter(), sort(), forEach(), lastIndexOf(), indexOf(), map(), reverse(),"
-    },
-    {
-        category: "Built-in Features",
-        question: "How can you use built-in functions or methods in JavaScript to perform mathematical operations? Give examples of commonly used functions or methods for mathematical calculations.",
-        answers: "parseFloat(), parseInt(),\nMath.floor(), Math.round(), Math.ceil(),\nMath.pow(base, exponent), Math.sqrt(x), Math.cbrt(x),\nMath.random() * 10 --- 0-10 random\nMath.floor(Math.random() * 10) + 1 --- 1-10 random\nMath.max(...values)\nMath.min(...values)"
-    },
-    {
-        category: "Built-in Features",
-        question: "What are some built-in functions or methods in JavaScript for manipulating numbers? Describe their functionality and give examples of how they can be used.",
-        answers: "Number(), toString(),\nparseInt(), parseFloat(),\nInfinity, -Infinity, isFinite()\nisNan(), Number.isInteger()"
-    },
-    {
-        category: "Built-in Features",
-        question: "Discuss the differences between `for` loops and the `forEach` method in JavaScript.",
-        answers: "for loop iterál, sorban haladva, foreach pedig mindegyik elemre ugyanazt csinálja, nem lehet megtörni"
-    },
-    {
-        category: "View Basics",
-        question: "Explain the difference between JavaScript object data structure and DOM data structure.",
-        answers: "Kulcs-érték párok vannak az objectben, ahol bármilyen infót tárolhatunk,\na DOM (Document Object Model) pedig egy tree-like structure, azaz egy faszerkezetes megjelenítési mód HTMLben, \nahol a javascriptet használva jeleníthetünk meg elementeket az oldalon. \nAz object business logic, míg a DOM view logic."
-    },
-    {
-        category: "View Basics",
-        question: "What are the necessary steps to change the content of an HTML element using JavaScript?",
-        answers: "Meg kell keressük a document-ben, el kell mentsük egy változóba, majd utána tudjuk módosítani különböző módokon."
-    },
-    {
-        category: "Event Basics",
-        question: "Define an event listener in JavaScript.",
-        answers: "Egy olyan callback function, ami meghatároz egy eseményt, és egy functiont, ami az esemény végbemenetele után fut le.\ndocument.addEventListener(`click`, (event)=>{\n    ///tartalom\n})"
-    },
-    {
-        category: "Event Basics",
-        question: "Outline the steps involved in changing the content of an HTML element when it is clicked.",
-        answers: "Őrá rakhatok egy click event listenert ha a scopeomon változóban elérem - a listeneren belül a változó nevével tudok hivatkozni rá .innerText vagy .innerHTML-lel pedig megváltoztatom a belső tartalmát, ha szöveget akarok, ha p\nRakhatok a document-re is event listenert, ezesetben a clickelt element-et a callback function paraméterében szereplő elnevezéssel érem el - általában e vagy event - szóval pl. e.target-ként elérem a kattintással célzott elementet."
-    },
-    {
-        category: "Event Basics",
-        question: "Inside a `click` event listener, how can you access the element that was clicked?",
-        answers: "A clickelt element-et a callback function paraméterében szereplő elnevezéssel érem el - általában e vagy event - szóval pl. e.target-ként elérem a kattintással célzott elementet."
-    },
-    {
-        category: "Design Basics",
-        question: "What are the differences between `display: block`, `display: inline`, and `display: inline-block` in CSS? \nWhen would you use each display property, and how do they affect the layout and behavior of elements?",
-        answers: "block:\n Egy új sort csinál magának, teljes sor hosszát elfoglalja pl. div, h1-h2-..., p\n Akkor használnám, ha címet, teljes sort kitöltő információt akarok megjeleníteni.\ninline:\nNem új sorban kezd, szélessége, magassága nem állítható, margin, padding csak széltében él pl. span, a, strong, em\n Akkor használnám, ha a szövegbe kisebb elementet akarok berakni pl. strong, vagy egy linket pl.\nblock-inline:\nVegyíti a két megjelenítési módot. Nem új sorban lesz az element, nem foglalja el a teljes sort, viszont állíthatóak a paraméterei.\n Akkor használnám, ha az eddigi szöveg, elementek mellé akarok rakni valami olyat, aminek a szélességét, magasságát állítani szeretném külön."
-    },
-    {
-        category: "Design Basics",
-        question: "Explain the distinctions between `position: relative` and `position: absolute` CSS properties.",
-        answers: "Relative: A normál helyzetükhöz képest vannak pozicionálva az elementek. Pozicionálás a top, right, bottom, és left beállításokkal történik.\nAbsolute: A legközelebb pozicionált ősükhöz képest vannak elhelyezve az elemek. Ha azt nem találja, a bodyhoz képest. Ugyanazzal a 4 beállítással lehet módosítgatni, elhelyezni."
-    },
-    {
-        category: "Design Basics",
-        question: "What is the box model? Name the CSS properties associated with it.",
-        answers: "A CSS box model koncepció azt reprezentálja, hogy a HTML elemek négyzetes dobozként jelennek meg a weboldalon. \nA box modell négy összetevőből áll: content, padding, border, és margin.\nContent: The content area is where the text, images, and other media are displayed. It is defined by the height and width of the element.\nPadding: The padding is the space between the content and the border. It can be set using the padding property.\nBorder: The border is a line that surrounds the content and padding areas. It can be set using the border property.\nMargin: The margin is the space between the border and the surrounding elements. It can be set using the margin property.\nWidth and height are also quite important."
-    },
-    {
-        category: "Design Basics",
-        question: "Identify the CSS properties that affect font and text appearance.",
-        answers: "Sok van, mint pl font-family, font-size, line-height, font-weight, font-style, text-decoration, text-align... stb."
-    },
-    {
-        category: "Design Basics",
-        question: "List the steps for adding or removing a class name from an HTML element.",
-        answers: "element.classList.add(`toAdd`)\nelement.classList.remove(`toRemove`)"
-    },
-    {
-        category: "JavaScript - Language Specialties",
-        question: "Elaborate on the differences between value and reference data types in JavaScript, specifically in relation to objects and primitives.",
-        answers: "Az objectek, arrayek csak a reference data structure-t tartalmazzák, azaz az elérési utat (?), amíg a primitívek pedig egy egyszerű adatot."
-    },
-    {
-        category: "JavaScript - Language Specialties",
-        question: "Discuss the concept of mutability and immutability in objects, arrays, and primitives, and explain why it is important to understand when working with data structures in JavaScript.",
-        answers: "A mutable, mint az objectek, arrayek változtatható, módosítható adatstruktúra, amíg a primitívek immutable-ök.  "
-    },
-    {
-        category: "JavaScript - Language Specialties",
-        question: "Is `null` considered an object or a primitive in JavaScript?",
-        answers: "Primitive. - van egy régi bug javascriptben, ami objectnek mutatja?"
-    },
-    {
-        category: "JavaScript - Language Specialties",
-        question: "What does `undefined` represent in JavaScript?",
-        answers: "Egy érték hiányát jelzi, vagy egy olyan változót, amit létrehoztak, de nem rendeltek hozzá semmit."
-    },
-    {
-        category: "JavaScript - Language Specialties",
-        question: "When would you use `var`, `let`, and `const` in JavaScript?",
-        answers: "var: function scope, hoistolható, de amíg értéket nem kap, undefined lesz. - nem gyakran használom - outdated.\nlet: block scope, ha változtatni akarjuk a teljes értéket, primitivek pl.\nconst: block scope, objectek arrayek, ahol a teljes értéket nem írjuk át."
-    },
-    {
-        category: "JavaScript - Language Specialties",
-        question: "Explain the concept of hoisting in JavaScript.",
-        answers: "A deklaráció előtt is a scopeon elérhető az adott dolog."
-    },
-    {
-        category: "Git",
-        question: "Discuss the advantages of using a version control system.",
-        answers: "Lehet követni a változásokat, visszacsinálni a rossz változtatást, rendszerezni, backupolni, távoli elérésre feltolni - felhőbe."
-    },
-    {
-        category: "Git",
-        question: "Clarify the differences between Git and GitHub.",
-        answers: "A git egy lokális kódmenedzser rendszer, amivel a változásokat lehet lekövetni a kódban. A github felhő alapú, így a közös munkát is megsegíti, és a távoli elérést, backupot, source kód kezelést leegyszerűsíti."
-    },
-    {
-        category: "Git",
-        question: "What is the purpose of remote repositories in Git?",
-        answers: "Az együtt dolgozás, távoli elérés, branch kezelés, illetve a kód eljuttatása bárkihez."
-    },
-    {
-        category: "Git",
-        question: "When does a merge conflict occur in Git?",
-        answers: "Amikor a git nem tudja automatikusan egyeztetni a kód két verzióját, és manuálisan kell kibogozni az adott részt."
-    },
-    {
-        category: "Terminal",
-        question: "How would you execute a JavaScript file in the terminal?",
-        answers: "node script.js"
-    },
-    {
-        category: "Terminal",
-        question: "What is the keyboard shortcut to stop a running process in the terminal?",
-        answers: "ctrl + C"
-    },
-    {
-        category: "Terminal",
-        question: "How can you retrieve the previous command executed in the terminal?",
-        answers: "up arrow button"
-    },
-    {
-        category: "Terminal",
-        question: "How do you navigate to the parent directory of the current directory in the terminal?",
-        answers: "cd.. (change directory ..)"
-    },
-    {
-        category: "Debugging",
-        question: "What techniques can you use while debugging a program?",
-        answers: "Firstly check if there is an error message and if there is, what does it say?\nIf the line is in a function, check where you call the function and what we entered the function at that time.\nconsole.log() helps with understanding\ndebugger tool can stop our running of the code with a break point"
-    },
-    {
-        category: "Debugging",
-        question: "What does step over, step into and step out mean while using the debugger?",
-        answers: "Step overrel az esetleges meghívott functionöket egészében lefuttatja és csak utána áll meg, míg a step into belelép és ott folytatja, a step out pedig onnan lefuttatja a maradék functiont és úgy áll meg a kinti scope következő soránál."
-    },
-    {
-        category: "Debugging",
-        question: "How can you start to debug a program from a certain line using the debugger?",
-        answers: "A bal oldalt lévő űrbe kell egy breakpointot létrehozni."
-    }
-]
-
-for (let q of data){
-    q.answers = [{name: "Huni", answer: q.answers}];
-}
-  
-const questions = [
-    "Mik a különbségek az objektumok, tömbök és primitívek között JavaScriptben? Hogyan használjuk őket a programozásban?",
-    "Hogyan érheted el egy adott kulcs értékét egy objektumban?",
-    "Magyarázd el az objektumokban található kulcs-érték párok koncepcióját, és hogy ezek hogyan különböznek a tömbök indexált elemeitől.",
-    "Írj le egy forgatókönyvet, amelyben egy objektumot választanál tömb helyett, vagy fordítva, és magyarázd el az indokaidat.",
-    "Hogyan érheted el egy tömb első és utolsó elemét?",
-    "Sorold fel az öt leggyakrabban használt primitív típust JavaScriptben, és mutass példákat arra, mikor és hogyan használd őket.",
-    "Adj példákat JavaScriptben használt értékadó operátorokra.",
-    "Nevezz meg néhány aritmetikai operátort JavaScriptben.",
-    "Melyek a különböző összehasonlító operátorok JavaScriptben?",
-    "Nevezz meg néhány logikai operátort JavaScriptben.",
-    "Magyarázd el a for, for of és for in ciklusok közötti különbségeket JavaScriptben.",
-    "Hogyan számolnád ki egy tömb értékeinek átlagát, ha nem használhatnál beépített függvényeket?",
-    "Mi az a függvény JavaScriptben? Magyarázd el a célját, és hogy hogyan használják a programozásban.",
-    "Írd le a JavaScript függvényt alkotó szintaktikai elemeket.",
-    "Hogyan adsz át argumentumokat egy függvénynek? Magyarázd el a paraméterátadás fogalmát, és hozz egy példát.",
-    "Mi a különbség a függvény kifejezések és deklarációk között? Hozz példákat mindkettőre.",
-    "Magyarázd el, mi az a callback függvény JavaScriptben.",
-    "Mi a változók hatóköre JavaScript függvényekben? Magyarázd el a lokális és globális változók közötti különbséget.",
-    "Melyek a leggyakrabban használt beépített függvények vagy metódusok JavaScriptben szövegek kezelésére? Adj példákat, és magyarázd el a használatukat.",
-    "Nevezz meg legalább öt beépített függvényt vagy metódust JavaScriptben tömbök kezelésére. Írd le, hogyan működnek, és hozz példákat.",
-    "Hogyan használhatod a JavaScript beépített függvényeit matematikai műveletek végrehajtására? Adj példákat.",
-    "Melyek a számok kezelésére szolgáló JavaScript beépített függvények vagy metódusok? Írd le működésüket, és adj példákat.",
-    "Beszéld meg a for ciklusok és a forEach metódus közötti különbségeket JavaScriptben.",
-    "Magyarázd el a JavaScript objektum adattípus és a DOM adattípus közötti különbséget.",
-    "Melyek a szükséges lépések egy HTML elem tartalmának JavaScript segítségével történő módosításához?",
-    "Határozd meg, mi az eseményfigyelő (event listener) JavaScriptben.",
-    "Vázold fel azokat a lépéseket, amelyekkel megváltoztatod egy HTML elem tartalmát kattintáskor.",
-    "Hogyan érheted el azt az elemet, amelyre kattintottál, egy click eseményfigyelőn belül?",
-    "Mik a különbségek a display: block, display: inline és display: inline-block CSS tulajdonságok között? Mikor használnád ezeket, és hogyan befolyásolják az elemek elrendezését és viselkedését?",
-    "Magyarázd el a position: relative és position: absolute CSS tulajdonságok közötti különbségeket.",
-    "Mi az a box model? Nevezd meg a hozzá tartozó CSS tulajdonságokat.",
-    "Melyek azok a CSS tulajdonságok, amelyek befolyásolják a betűtípus és szöveg megjelenését?",
-    "Sorold fel a lépéseket egy HTML elem osztályának hozzáadásához vagy eltávolításához.",
-    "Beszélj a JavaScript objektumok és primitívek közötti érték- és referencia adattípusok közötti különbségekről.",
-    "Beszélj a mutabilitás és immutabilitás fogalmáról objektumok, tömbök és primitívek esetén, és magyarázd el, miért fontos ezt megérteni JavaScriptben.",
-    "A null objektum vagy primitív JavaScriptben?",
-    "Mit képvisel az undefined JavaScriptben?",
-    "Mikor használnád a var, let és const kulcsszavakat JavaScriptben?",
-    "Magyarázd el a hoisting fogalmát JavaScriptben.",
-    "Beszélj a verziókövető rendszer használatának előnyeiről.",
-    "Magyarázd el a Git és a GitHub közötti különbségeket.",
-    "Mi a célja a távoli tárolóknak (remote repositories) a Gitben?",
-    "Mikor fordul elő merge konfliktus Gitben?",
-    "Hogyan futtatnál egy JavaScript fájlt terminálban?",
-    "Mi a billentyűparancs a futó folyamat leállítására a terminálban?",
-    "Hogyan hívhatod vissza a terminálban végrehajtott előző parancsot?",
-    "Hogyan navigálhatsz az aktuális könyvtár szülőkönyvtárába a terminálban?",
-    "Milyen technikákat használhatsz egy program hibakeresése során?",
-    "Mit jelent a „step over”, „step into” és „step out” a hibakereső használata során?",
-    "Hogyan tudsz hibakeresést indítani egy adott sorból a debugger használatával?"
+  {
+    category: "Java Ecosystem",
+    question: "What is the JVM?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Java Virtual Machine, it runs Java bytecode on any platform.\n        Example: java MyProgram runs inside the JVM.",
+      },
+    ],
+  },
+  {
+    category: "Java Ecosystem",
+    question: "What does Java compilation mean?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Translating Java source code into bytecode.\n        Example: javac MyProgram.java → MyProgram.class.",
+      },
+    ],
+  },
+  {
+    category: "Java Ecosystem",
+    question: "What is Java bytecode?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Platform-independent instructions executed by the JVM.\n        Example: .class files contain bytecode.",
+      },
+    ],
+  },
+  {
+    category: "Java Ecosystem",
+    question: "What is the difference between the JRE and the JDK?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          'JRE (Java Runtime Environment): This is the "power outlet." For running Java programs.\n    JDK (Java Development Kit): This is the full "toolbox." For developing apps, compiling source.',
+      },
+    ],
+  },
+  {
+    category: "Java Ecosystem",
+    question: "What is the `Iterable` interface?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Iterable represents something that can be looped over with a for-each loop. \n    It defines the iterator() method.",
+      },
+    ],
+  },
+  {
+    category: "Java Ecosystem",
+    question: "What is the `Collection` interface?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Collection is the root interface for most data structures like lists, sets, and queues. \n    It provides basic operations like add, remove, size, and contains.",
+      },
+    ],
+  },
+  {
+    category: "Java Ecosystem",
+    question: "What is the `Map` interface?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Map stores key–value pairs. \n    Each key is unique and maps to exactly one value.",
+      },
+    ],
+  },
+  {
+    category: "Java Ecosystem",
+    question: "Compare sets, lists, and queues in Java.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "List:   Ordered collection, allows duplicates, elements are indexed.\n    Set:    No duplicates, order is not guaranteed.\n    Queue:  Processes elements in a particular order, usually FIFO (first in, first out).\n\n    Use a List when order and indexing matter.\n    Use a Set when you must avoid duplicates.\n    Use a Queue when processing in sequence or scheduling tasks.",
+      },
+    ],
+  },
+  {
+    category: "Java Ecosystem",
+    question: "Compare `ArrayList` and `LinkedList` in Java.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "ArrayList:      Fast random access, slow insert/delete in the middle.\n    LinkedList:     Slow random access, faster insert/delete in the middle.\n\n    ArrayList is better when you read data often.\n    LinkedList is better when you insert/remove in the middle often.\n\n    But in real practice, ArrayList is used much more often because:\n        - Random access is very common.\n        - Modern processors handle array operations efficiently.",
+      },
+    ],
+  },
+  {
+    category: "Java Ecosystem",
+    question: "Are sets sorted in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Not by default.\n        HashSet         → not sorted.\n        LinkedHashSet   → preserves insertion order.\n        TreeSet         → sorted automatically.",
+      },
+    ],
+  },
+  {
+    category: "Language Features",
+    question: "What control statements are available in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "if, else, switch, loops (for, while, do-while), break, continue.\n        Example: if(x > 5) { ... }.",
+      },
+    ],
+  },
+  {
+    category: "Language Features",
+    question: "Compare the different looping constructs in Java.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "for: fixed iterations           → for   (int i=0;i<5;i++)\n    while: repeats while condition  → while (x<5)\n    do-while: runs at least once    → do { } while(x<5)",
+      },
+    ],
+  },
+  {
+    category: "Language Features",
+    question: "Compare the different conditional constructs in Java.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "if-else: checks boolean → if(a>b) ... else ....\n    switch: multiple values → switch(day) { case 1: ... }",
+      },
+    ],
+  },
+  {
+    category: "Language Features",
+    question: "What is a `while` loop?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Loop that runs while a condition is true.\n        Example: while(count < 10) count++;",
+      },
+    ],
+  },
+  {
+    category: "Language Features",
+    question: "How do you manually break out of a loop?",
+    answers: [
+      {
+        name: "Huni",
+        answer: "Use break.\n        Example: if(x==5) break;",
+      },
+    ],
+  },
+  {
+    category: "Language Features",
+    question: "What does the `var` keyword mean?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "var allows local variable type inference. The compiler figures out the variable’s type from the value assigned to it.\n    It does not make Java dynamically typed — the type is still fixed at compile time.\n\n    Example:\n        var x = 5; // x is an int",
+      },
+    ],
+  },
+  {
+    category: "Language Features",
+    question:
+      "What are lambda expressions? How are they used in Java development?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          'Lambda expressions are short functions written inline without defining a full method.\n    They are mainly used to make code more concise when working with functional interfaces, especially in streams and collections.\n\n    Example:\n        numbers.forEach(n -> System.out.println(n));\n\n    Use cases:\n        - Passing behavior as a parameter\n        - Stream operations (filter, map, reduce)\n        - Simplifying callback or event code\n\n        + Method reference: \n            In Java, :: is called the method reference operator. \n            It’s used in lambda expressions to refer to a method by name instead of writing a full lambda.\n\n            Example:\n                List<String> names = List.of("Alice", "Bob");\n                names.forEach(System.out::println); (References a static method)',
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What are primitive types in Java? Give some examples.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Basic data types.\n        Example: int x=10; double pi=3.14; boolean flag=true; char c='A';",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question:
+      "What is the difference between primitive types and reference types?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          'Primitives store values directly; references store addresses.\n        Example: int a=5; String s="Hi";',
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is a class in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A blueprint for objects.\n        Example: class Car { String model; }",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is an object in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer: "An instance of a class.\n        Example: Car c = new Car();",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is a constructor?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "In Java, the constructor is a special type of method defined within the class, used to initialize fields when an instance of the class is created. The name of the constructor method must be the same as the class itself.\n\n    A special method to initialize objects.\n        Example: Car(String m){ model = m; }.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is an enum in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "An enum is a special type that represents a fixed set of constant values.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "Explain the difference between a class and an enum.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A class can create many different objects with varying values, \n    while an enum only defines a limited set of predefined constant instances.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "Explain the difference between a class and a record.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A class can have flexible behavior and fields, \n    whereas a record is a compact class meant to store data with automatic getters, equals(), hashCode(), and toString().",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What are interfaces? Why should we use them?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Interfaces define method signatures without implementation. \n    They are used to achieve abstraction and allow different classes to follow the same contract.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is inheritance?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Interfaces define method signatures without implementation. \n    They are used to achieve abstraction and allow different classes to follow the same contract.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "Is multiple inheritance allowed in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Classes cannot inherit from multiple classes, but they can implement multiple interfaces.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is a static class member?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "It is a field or method that belongs to the class itself, not to individual objects.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "Can a static method use non-static members?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "No, because static methods do not have access to a specific object instance.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What does the final keyword mean in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Can’t be changed/overridden/extended.\n    When it is a reference type only thje reference cannort be changed, the values it holds can!\n        Example: private final int x=10;",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What does the abstract keyword mean in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Class/method that must be completed in a subclass.\n        Example: abstract class Animal { abstract void sound(); }",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is overloading in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Defining multiple methods with the same name but different parameters.\n        Example:\n        int add(int a, int b)  \n        double add(double a, double b)",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is overriding in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          'Redefining a method from a superclass in a subclass with the same signature.\n        Example:\n        class Animal { void sound() { } }  \n        class Dog extends Animal { void sound() { System.out.println("Bark"); } }',
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is the difference between overloading and overriding?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Overloading:    same method name, different parameters, in the same class.\n    Overriding:     same method signature, different implementation, in subclass.\n\n        Example difference:\n        Overloading → print(int x) vs print(String s)\n        Overriding → Parent’s print() replaced by Child’s print()",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is null?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A literal meaning no object reference.\n        Example: String s = null;",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "Compare the access modifiers in Java.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "public:     visible everywhere → public class A {}\n    private:    only in class → private String name;\n    protected:  visible in package + subclasses → protected int x;\n    default (package-private): only in package → int y;",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is the default access modifier in a class?",
+    answers: [
+      {
+        name: "Huni",
+        answer: "Package-private.\n        Example: class Dog {} (no modifier)",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is the purpose of the equals() method?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          'Checks if objects are logically equal.\n        Example: "hi".equals("hi") // true',
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is the difference between == and equals()?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          '== compares references, equals() compares content.\n        Example:\n        new String("hi") == new String("hi") // false\n        new String("hi").equals("hi")        // true.',
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "What is the difference between long and Long?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "long is a primitive type.\n    Long is the wrapper class (an object) for long, which can be null and provides useful methods.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question: "Which can store bigger numbers, long or Long?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "They store the same numeric range (-2^63 to 2^63-1). \n    The difference is not size, but that Long can be used as an object.",
+      },
+    ],
+  },
+  {
+    category: "Type System",
+    question:
+      "What kind of packages do you know under java.util.* ? Bring at least 3 examples.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Examples from java.util:\n        ArrayList → resizable list.\n        HashMap → key–value pairs.\n        HashSet → unique elements.\n        Date / Calendar → date and time utilities.\n\n        Example:\n            ArrayList<String> list = new ArrayList<>();\n            HashMap<Integer,String> map = new HashMap<>();\n            HashSet<Integer> set = new HashSet<>();",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "Explain the Single Responsibility Principle.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "SRP is a software-design guideline that states a class or function should have only one reason to change.\nThis means it should have a single, well-defined responsibility.\nFor example, a class that handles saving a user to a database should be separate from a class that sends email notifications to that user.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "Explain the Interface Segregation Principle.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Short: Classes should not be forced to implement interfaces they don’t use.\n\nDefinition:\nNo client should be forced to depend on methods it does not use.\nIt’s better to have many small, focused interfaces than one large one.\n\nWhy:\nLarge interfaces make classes implement useless or meaningless methods.\n\nExample:\nInstead of one Animal interface with fly(), run(), swim(), split into:\n- Flyable\n- Runnable\n- Swimmable\nSo each animal only implements what it needs.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "What is composition over inheritance?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Prefer building objects by combining other objects (has-a) rather than extending classes (is-a), to keep code more flexible and less tightly coupled.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "What is a model class?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A class that represents data in the application, usually just fields with getters/setters (e.g., User, Order).",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "What is a service class?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A class that contains business logic or operations that act on model data.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "Explain the Open/Closed Principle.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Short: Classes should be open for extension but closed for modification, meaning behavior can be added without changing existing code.\n\nDefinition:\nClasses should be open for extension (we can add new behavior), but closed for modification (we don’t need to edit existing code to add it).\n\nWhy:\nIf you change existing code often, you risk breaking features that already work.\n\nExample:\nInstead of modifying a method to handle new cases, use polymorphism (add new subclasses or strategies).",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "Explain the Liskov Substitution Principle.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Short: A subclass should be able to replace its parent class without breaking the program’s behavior.\n\nDefinition:\nAny subclass should be usable in place of its parent class without changing the program’s behavior.\n\nMeaning:\nA subclass must not:\n- Remove behavior that the parent promised\n- Add unexpected side-effects or new rules\n\nExample:\nIf Bird has fly(), then Penguin should not extend Bird because it cannot fly — that breaks LSP.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "Explain the Dependency Inversion Principle.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Short: High-level code should depend on abstractions (interfaces), not on concrete implementations.\n\nDefinition:\nHigh-level modules should depend on abstractions, not concrete implementations.\n\nMeaning:\nClasses should talk to interfaces, not to specific classes.\n\nWhy:\nThis reduces coupling and makes code easier to replace, test, and modify.\n\nExample:\nInstead of: Car car = new Car();\nUse: Vehicle car = new Car();\n\nNow you can replace Car() with Bike() without changing the dependent code.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question:
+      "What do we mean by the Gang of Four (GoF) Design Patterns? Can you name some of these patterns?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "They are classic, well-known design patterns from the Design Patterns book by four authors.\n\nExamples: Singleton, Factory, Strategy, Observer, Decorator.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question:
+      "What are the risks associated with using the GoF design patterns?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "They can make code overly complex or abstract if used where they aren’t needed.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "What do we mean by YAGNI?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "“You Aren’t Gonna Need It” — don’t add features until they are needed.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "What do we mean by SLAP?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Single Level of Abstraction Principle — methods should operate at one logical level to stay clear and understandable.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "What do we mean by KISS?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "“Keep It Simple, Stupid” — simpler solutions are usually better and easier to maintain.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "What is the Repository Pattern?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A layer that manages data access, providing methods to retrieve, update, and store model objects.",
+      },
+    ],
+  },
+  {
+    category: "Architecture",
+    question: "What is a CRUD interface?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "An interface that defines methods for basic data operations: Create, Read, Update, Delete.",
+      },
+    ],
+  },
+  {
+    category: "Unit Testing",
+    question: "Why is unit testing a good practice?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "1. It catches bugs early – you find problems before running the whole program.\n2. It ensures code correctness – you can verify each method does what it should.\n3. It makes changes safer – if you break something, tests will fail and alert you.\n4. It improves design – writing tests encourages smaller, cleaner, more modular code.\n5. It helps documentation – tests show how the code is meant to be used.\n6. It saves time later – fewer debugging sessions and easier maintenance.\n\nIn short: unit tests make your code more reliable, maintainable, and easier to improve.",
+      },
+    ],
+  },
+  {
+    category: "Unit Testing",
+    question: "What is JUnit?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "JUnit is a unit testing framework for most languages on JVM (Java, Kotlin, Groovy).",
+      },
+    ],
+  },
+  {
+    category: "Unit Testing",
+    question: "What is a parameterized test?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A test method that runs multiple times with different input values, allowing you to check the same logic under various scenarios.",
+      },
+    ],
+  },
+  {
+    category: "Unit Testing",
+    question:
+      "What options do you have in NUnit to create parameterized tests?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "[TestCase] → pass specific values directly.\n[TestCaseSource] → use a method, property, or field as a data source.\n[ValueSource] → provide values for a single parameter.\n[Range] → generate numeric sequences for testing.",
+      },
+    ],
+  },
+  {
+    category: "Unit Testing",
+    question: "What is mocking?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Creating a fake version of a dependency to isolate a unit of code during testing, often verifying how it was used.",
+      },
+    ],
+  },
+  {
+    category: "Unit Testing",
+    question: "What is the difference between mocking, stubbing and faking?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Stubbing: Provides fixed return values for methods.\nMocking: Simulates behavior and can verify interactions (e.g., method calls).\nFaking: Provides a simplified working implementation that behaves like the real system but is easier/faster for tests.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question:
+      "What are relational databases? What are their advantages and disadvantages?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Relational databases store data in tables with rows and columns, and relationships between them.\n\nAdvantages: strong structure, data integrity, easy querying with SQL.\nDisadvantages: less flexible for unstructured data, can be slower at very large scale.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question:
+      "How do you associate entities to each other in a relational database model?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "By using primary keys and foreign keys to link rows in different tables.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question: "What are tables in a relational database?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Tables are structures that store data in rows (records) and columns (fields).",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question: "What is a primary key?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A primary key uniquely identifies each row in a table. It cannot be null or duplicated.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question: "What is a foreign key?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A foreign key is a field in one table that refers to a primary key in another table, creating a relationship.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question: "What does the SQL abbreviation stand for?",
+    answers: [
+      {
+        name: "Huni",
+        answer: "SQL = Structured Query Language.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question:
+      "What are some of the SQL database providers that you’ve heard of?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "MySQL, PostgreSQL, SQLite, MariaDB, Oracle, Microsoft SQL Server.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question:
+      "What are SQL data types? Are there any differences in data types between different SQL databases?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "SQL data types define what kind of values a column can hold (e.g., INT, VARCHAR, DATE).\n\nThe difference is: exact names and size limits can differ between SQL databases.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question: "What are constraints in SQL?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Rules applied to columns to enforce data integrity, such as PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL, and CHECK.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question: "How can we program different SQL databases in Java?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Using JDBC (Java Database Connectivity) or ORM frameworks like Hibernate / JPA.",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question:
+      "Which SQL statement is used to create tables? Describe the syntax briefly.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "CREATE TABLE table_name (\n    column_name data_type constraint,\n    ...\n);",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question:
+      "Which SQL statement can be used to insert values? Describe the syntax briefly.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "INSERT INTO table_name (column1, column2)\nVALUES (value1, value2);",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question:
+      "Which SQL statement can be used to update values? Describe the syntax briefly.",
+    answers: [
+      {
+        name: "Huni",
+        answer: "UPDATE table_name\nSET column = value\nWHERE condition;",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question:
+      "Which SQL statement can be used to delete rows? Describe the syntax briefly.",
+    answers: [
+      {
+        name: "Huni",
+        answer: "DELETE FROM table_name\nWHERE condition;",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question:
+      "Which SQL statement can be used to create queries? Describe the syntax briefly.",
+    answers: [
+      {
+        name: "Huni",
+        answer: "SELECT column_list\nFROM table_name\nWHERE condition;",
+      },
+    ],
+  },
+  {
+    category: "Databases",
+    question: "How can you join tables together in SQL? When should you do it?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Using a JOIN clause, typically on matching primary/foreign keys. You join tables when you need related data stored across multiple tables.\n\nSELECT *\nFROM table1\nJOIN table2 ON table1.id = table2.table1_id;",
+      },
+    ],
+  },
+  {
+    category: "Bonus Questions (From Background Materials)",
+    question:
+      "What is the Java Collection Framework? Describe some of its elements.",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "A set of interfaces and classes in Java that provide standard ways to store, access, and manipulate groups of objects. It includes lists, sets, queues, and maps, plus utility classes like Collections.\n\nSome key elements:\n- List → ordered, allows duplicates (ArrayList, LinkedList)\n- Set → no duplicates, may or may not be ordered (HashSet, TreeSet)\n- Queue → processes elements in order, usually FIFO (LinkedList, PriorityQueue)\n- Map → key–value pairs (HashMap, TreeMap)\n- Iterator → for traversing collections\n- Collections utility class → methods like sort(), reverse(), shuffle()",
+      },
+    ],
+  },
+  {
+    category: "Bonus Questions (From Background Materials)",
+    question:
+      "What's the advantage of working with abstractions rather than concrete implementations?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Code becomes more flexible and loosely coupled, because logic depends on behaviors (List, Set) instead of specific classes (ArrayList, HashSet). It is also easier to test and maintain.\n\nExample:\nList<String> names = new ArrayList<>();\n// Later you can switch to LinkedList without changing logic",
+      },
+    ],
+  },
+  {
+    category: "Bonus Questions (From Background Materials)",
+    question: "What is Optional?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Optional is a container object that may or may not contain a value. It helps avoid null references and provides methods to safely handle missing data.",
+      },
+    ],
+  },
+  {
+    category: "Bonus Questions (From Background Materials)",
+    question: "What does Optional.empty return?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Optional.empty() returns an empty Optional instance, meaning it contains no value. It is used to indicate the absence of a result without using null.",
+      },
+    ],
+  },
+  {
+    category: "Bonus Questions (From Background Materials)",
+    question: "What are generic types, and why use them?",
+    answers: [
+      {
+        name: "Huni",
+        answer:
+          "Generics allow classes and methods to work with different data types while maintaining type safety. They use placeholders like T instead of concrete types.\n\nWhy use them?\n- Type safety: errors caught at compile time\n- Avoid casting: no manual type conversion\n- Code reuse: one generic class can serve many types\n\nExample:\nArrayList<String> names = new ArrayList<>();\nArrayList<Integer> numbers = new ArrayList<>();",
+      },
+    ],
+  },
 ];
-  
-for (let i = 0; i < questions.length; i++){
-    data[i].question = questions[i];
-}
 
-const chatGPTAnswers = [
-    "Objektumok kulcs-érték párokat tárolnak, tömbök indexált adatokat, primitívek egyszerű adattípusok.",
-    "Egy objektum kulcsának értéke elérhető: obj.kulcs vagy obj['kulcs'].",
-    "Kulcsok nevesítettek az objektumban, indexek számalapúak a tömbben.",
-    "Objektumot választasz nevesített tulajdonságokhoz, tömböt sorrendhez.",
-    "Tömb első eleme: arr[0], utolsó eleme: arr[arr.length - 1].",
-    "String, Number, Boolean, Null, Undefined. Pl.: let name = 'John'.",
-    "Értékadó operátorok: =, +=, -=, *=, /=.",
-    "Aritmetikai operátorok: +, -, *, /, %.",
-    "Összehasonlító operátorok: ==, ===, !=, !==, <, >.",
-    "Logikai operátorok: &&, ||, !.",
-    "For ciklus számlálóval iterál, for of iterálható elemek felett, for in objektum kulcsain.",
-    "Tömb átlagához: összeg+darabszám osztással.",
-    "Függvény újrahasznosítható kódblokkok műveletekre.",
-    "Függvény szintaxisa: function név(paraméterek) { törzs }.",
-    "Paraméterátadás: Érték vagy referencia alapján, pl.: myFunc(42).",
-    "Függvény deklaráció: function foo() {}. Kifejezés: const foo = function() {}.",
-    "Callback függvény: Függvény, amit másik függvény hív meg.",
-    "Globális változó bárhonnan elérhető, lokális csak a függvényben.",
-    "Szöveg metódusok: toUpperCase(), toLowerCase(), trim().",
-    "Tömb metódusok: push(), pop(), map(), filter(), reduce().",
-    "Matematikai függvények: Math.sqrt(4), Math.round(3.5).",
-    "Számok metódusai: toFixed(), parseInt().",
-    "For ciklus rugalmasabb, forEach egyszerűbb, nem szakítható meg.",
-    "Objektum: JavaScript adat, DOM: HTML elemek reprezentációja.",
-    "HTML elem módosítása: document.querySelector().innerText.",
-    "Eseményfigyelő: Kód, ami reagál eseményekre.",
-    "HTML elem módosítása kattintásra: click esemény létrehozásával.",
-    "Kattintott elem elérése: esemény target tulajdonságával.",
-    "Display block új sorba tör, inline egy sorban, inline-block méretezhető.",
-    "Position relative saját helyzethez képest, absolute szülőhöz képest.",
-    "Box model: Margin, Border, Padding, Content.",
-    "Betűtípus tulajdonságok: font-size, color, text-align.",
-    "HTML osztály hozzáadása: element.classList.add().",
-    "Primitívek érték alapúak, objektumok referencia alapúak.",
-    "Primitívek immutábilisak, objektumok és tömbök mutábilisak.",
-    "Null primitív, üres értéket jelent.",
-    "Undefined nem definiált érték.",
-    "Var globális vagy funkció szintű, let blokk szintű, const nem változtatható.",
-    "Hoisting: Változók és függvények 'felhúzása' a kód tetejére.",
-    "Verziókövetés előnyei: változások követése, csapatmunka.",
-    "Git: Verziókezelő rendszer, GitHub: Tárolók hosztolása.",
-    "Távoli tárolók célja: Tárolók megosztása és szinkronizálása.",
-    "Merge konfliktus: Két módosítás ütközik.",
-    "JavaScript fájl futtatása: node file.js.",
-    "Folyamat leállítása terminálban: Ctrl + C.",
-    "Előző parancs visszahívása: Fel nyíl.",
-    "Szülőkönyvtárba navigálás: cd ..",
-    "Hibakeresés: Debugger, console.log, tesztek.",
-    "Step over: Következő sor, Step into: Függvény belépés, Step out: Függvény kilépés.",
-    "Hibakeresés adott sorból: Breakpoint beállítása."
-  ];
-
-for (let i = 0; i < chatGPTAnswers.length; i++){
-    let GPTanswer = {name: "ChatGPT", answer: chatGPTAnswers[i]}
-    data[i].answers.push(GPTanswer);
-}
-  
-
-export {data};
-
+export { data };
