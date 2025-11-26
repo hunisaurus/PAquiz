@@ -292,7 +292,7 @@ const data = [
       {
         name: "Huni",
         answer:
-          "Interfaces define method signatures without implementation. \n    They are used to achieve abstraction and allow different classes to follow the same contract.",
+          "Inheritance is an object-oriented concept where one class (child/subclass) \nautomatically receives the fields and methods of another class (parent/superclass).\n\nIt allows code reuse and creates a natural hierarchy between classes.",
       },
     ],
   },
