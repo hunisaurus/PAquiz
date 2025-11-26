@@ -298,7 +298,9 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom) {
   }
 
   if (document.getElementById("yes") != undefined) {
-    document.getElementById("yourAnswer").remove();
+    if (document.getElementById("yourAnswer") != undefined) {
+      document.getElementById("yourAnswer").remove();
+    }
     document.getElementById("yesOrNo").remove();
     document.getElementById("question").remove();
     for (let e of document.querySelectorAll(".answersSoFar")) {
