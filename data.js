@@ -94,7 +94,7 @@ const data = [
       {
         name: "Huni",
         answer:
-          "ArrayList:      Fast random access, slow insert/delete in the middle.\n    LinkedList:     Slow random access, faster insert/delete in the middle.\n\n    ArrayList is better when you read data often.\n    LinkedList is better when you insert/remove in the middle often.\n\n    But in real practice, ArrayList is used much more often because:\n        - Random access is very common.\n        - Modern processors handle array operations efficiently.",
+          "ArrayList: (implements List interface) Fast random access, slow insert/delete in the middle.\n    LinkedList: (implements List and Deque interfaces) Slow random access, faster insert/delete in the middle.\n\n    ArrayList is better when you read data often.\n    LinkedList is better when you insert/remove in the middle often.\n\n    But in real practice, ArrayList is used much more often because:\n        - Random access is very common.\n        - Modern processors handle array operations efficiently.",
       },
     ],
   },
