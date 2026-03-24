@@ -16,11 +16,17 @@ const goButton = document.createElement("button");
 
 // view
 function displayFirstPage(data) {
-  // fill categories
-  const categories = [];
+  // collect categories grouped by module
+  const modulesOrder = ["Prog Basics", "Web", "OOP Java", "Advanced Java"];
+  const moduleToCategories = {};
+
   for (let question of data) {
-    if (!categories.includes(question.category)) {
-      categories.push(question.category);
+    const moduleName = question.module || "OOP Java";
+    if (!moduleToCategories[moduleName]) {
+      moduleToCategories[moduleName] = [];
+    }
+    if (!moduleToCategories[moduleName].includes(question.category)) {
+      moduleToCategories[moduleName].push(question.category);
     }
   }
 
@@ -46,31 +52,44 @@ function displayFirstPage(data) {
   chooseThemesElement.classList.add("textChange");
   chooseThemesElement.innerText = "VÁLASSZ TÉMÁKAT:";
 
-  for (let cat of categories) {
-    let count = 0;
-    for (let q of data) {
-      if (q.category === cat) {
-        count++;
+  // render modules and their categories
+  for (let moduleName of modulesOrder) {
+    const cats = moduleToCategories[moduleName];
+    if (!cats || cats.length === 0) continue;
+
+    const moduleHeading = document.createElement("h3");
+    moduleHeading.classList.add("firstPage");
+    moduleHeading.classList.add("moduleHeading");
+    moduleHeading.innerText = moduleName;
+    categoriesElement.appendChild(moduleHeading);
+
+    for (let cat of cats) {
+      let count = 0;
+      for (let q of data) {
+        if (q.category === cat) {
+          count++;
+        }
       }
+
+      const categoryElement = document.createElement("div");
+      categoryElement.innerText = cat;
+      categoryElement.classList.add("category");
+      categoryElement.classList.add("firstPage");
+      categoriesElement.appendChild(categoryElement);
+
+      const countElement = document.createElement("div");
+      countElement.classList.add("categoryCount");
+      countElement.id = "categoryCount";
+      countElement.innerText = `(${count})`;
+      categoryElement.appendChild(countElement);
+
+      const catCheckBox = document.createElement("input");
+      catCheckBox.setAttribute("type", "checkbox");
+      catCheckBox.id = cat;
+      catCheckBox.classList.add("firstPage");
+      catCheckBox.classList.add("checkBox");
+      categoryElement.appendChild(catCheckBox);
     }
-    const categoryElement = document.createElement("div");
-    categoryElement.innerText = cat;
-    categoryElement.classList.add("category");
-    categoryElement.classList.add("firstPage");
-    categoriesElement.appendChild(categoryElement);
-
-    const countElement = document.createElement("div");
-    countElement.classList.add("categoryCount");
-    countElement.id = "categoryCount";
-    countElement.innerText = `(${count})`;
-    categoryElement.appendChild(countElement);
-
-    const catCheckBox = document.createElement("input");
-    catCheckBox.setAttribute("type", "checkbox");
-    catCheckBox.id = cat;
-    catCheckBox.classList.add("firstPage");
-    catCheckBox.classList.add("checkBox");
-    categoryElement.appendChild(catCheckBox);
   }
 
   const checkAllElement = document.createElement("div");
