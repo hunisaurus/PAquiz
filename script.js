@@ -57,11 +57,28 @@ function displayFirstPage(data) {
     const cats = moduleToCategories[moduleName];
     if (!cats || cats.length === 0) continue;
 
+    // header container for module name + checkbox
+    const moduleHeaderContainer = document.createElement("div");
+    moduleHeaderContainer.classList.add("firstPage");
+    moduleHeaderContainer.classList.add("module-header-container");
+
     const moduleHeading = document.createElement("h3");
-    moduleHeading.classList.add("firstPage");
     moduleHeading.classList.add("moduleHeading");
     moduleHeading.innerText = moduleName;
-    categoriesElement.appendChild(moduleHeading);
+    moduleHeaderContainer.appendChild(moduleHeading);
+
+    const moduleCheckbox = document.createElement("input");
+    moduleCheckbox.setAttribute("type", "checkbox");
+    moduleCheckbox.classList.add("moduleCheckbox");
+    moduleHeaderContainer.appendChild(moduleCheckbox);
+
+    categoriesElement.appendChild(moduleHeaderContainer);
+
+    // container for this module's categories (initially hidden)
+    const moduleCategoriesWrapper = document.createElement("div");
+    moduleCategoriesWrapper.classList.add("module-categories");
+    moduleCategoriesWrapper.style.display = "none";
+    categoriesElement.appendChild(moduleCategoriesWrapper);
 
     for (let cat of cats) {
       let count = 0;
@@ -74,8 +91,8 @@ function displayFirstPage(data) {
       const categoryElement = document.createElement("div");
       categoryElement.innerText = cat;
       categoryElement.classList.add("category");
-      categoryElement.classList.add("firstPage");
-      categoriesElement.appendChild(categoryElement);
+        categoryElement.classList.add("firstPage");
+        moduleCategoriesWrapper.appendChild(categoryElement);
 
       const countElement = document.createElement("div");
       countElement.classList.add("categoryCount");
@@ -90,6 +107,39 @@ function displayFirstPage(data) {
       catCheckBox.classList.add("checkBox");
       categoryElement.appendChild(catCheckBox);
     }
+
+    // clicking the header (but not the checkbox) toggles visibility of this module's categories
+    moduleHeaderContainer.addEventListener("click", (e) => {
+      if (e.target === moduleCheckbox) return; // don't toggle on direct checkbox clicks
+      moduleCategoriesWrapper.style.display =
+        moduleCategoriesWrapper.style.display === "none" ? "block" : "none";
+    });
+
+    // module checkbox selects/deselects all categories in this module
+    moduleCheckbox.addEventListener("click", (e) => {
+      const chex = moduleCategoriesWrapper.getElementsByClassName("checkBox");
+      if (!moduleCheckbox.hasAttribute("checked")) {
+        moduleCheckbox.setAttribute("checked", true);
+        moduleHeaderContainer.style.color = "brown";
+        for (let check of chex) {
+          if (!check.hasAttribute("checked")) {
+            check.click();
+          }
+        }
+      } else {
+        for (let check of chex) {
+          if (check.hasAttribute("checked")) {
+            check.click();
+          }
+        }
+        moduleCheckbox.removeAttribute("checked");
+        moduleHeaderContainer.style.color = "palegreen";
+      }
+
+      // keep question count text in sync
+      howManyQuestionsCount.innerText = questionsSlideInput.value;
+      howManyQuestionsCount.appendChild(kerdesElement);
+    });
   }
 
   const checkAllElement = document.createElement("div");
@@ -262,6 +312,8 @@ function displayFirstPage(data) {
 
   checkAllBox.addEventListener("click", (e) => {
     const chex = categoriesElement.getElementsByClassName("checkBox");
+    const moduleCheckboxes =
+      categoriesElement.getElementsByClassName("moduleCheckbox");
     // console.log(chex);
     if (!checkAllBox.hasAttribute("checked")) {
       checkAllBox.setAttribute("checked", true);
@@ -269,6 +321,15 @@ function displayFirstPage(data) {
         if (!check.hasAttribute("checked")) {
           // console.log("clicked")
           check.click();
+        }
+      }
+      // mark all module checkboxes as selected and color their headers
+      for (let mCheck of moduleCheckboxes) {
+        if (!mCheck.hasAttribute("checked")) {
+          mCheck.setAttribute("checked", true);
+        }
+        if (mCheck.parentElement) {
+          mCheck.parentElement.style.color = "brown";
         }
       }
     } else if (checkAllBox.hasAttribute("checked")) {
@@ -279,6 +340,15 @@ function displayFirstPage(data) {
         }
       }
       checkAllBox.removeAttribute("checked");
+      // uncheck all module checkboxes and reset their header color
+      for (let mCheck of moduleCheckboxes) {
+        if (mCheck.hasAttribute("checked")) {
+          mCheck.removeAttribute("checked");
+        }
+        if (mCheck.parentElement) {
+          mCheck.parentElement.style.color = "palegreen";
+        }
+      }
     }
 
     howManyQuestionsCount.innerText = questionsSlideInput.value;
@@ -300,6 +370,36 @@ function randomQuestion(allQuestionsToChooseFrom) {
   }
 
   return answer;
+}
+
+function updateQuestionMeta(question) {
+  if (!question) return;
+
+  let metaElement = document.getElementById("qaMeta");
+  if (!metaElement) {
+    metaElement = document.createElement("div");
+    metaElement.id = "qaMeta";
+    metaElement.classList.add("qa-meta");
+
+    const moduleElement = document.createElement("span");
+    moduleElement.id = "qaModule";
+    metaElement.appendChild(moduleElement);
+
+    const categoryElement = document.createElement("span");
+    categoryElement.id = "qaCategory";
+    metaElement.appendChild(categoryElement);
+
+    rootElement.appendChild(metaElement);
+  }
+
+  const moduleElement = document.getElementById("qaModule");
+  const categoryElement = document.getElementById("qaCategory");
+  if (moduleElement) {
+    moduleElement.innerText = question.module || "OOP Java";
+  }
+  if (categoryElement) {
+    categoryElement.innerText = question.category || "";
+  }
 }
 
 function askQuestionAndAnswer(allQuestionsToChooseFrom) {
@@ -341,6 +441,9 @@ function askQuestionAndAnswer(allQuestionsToChooseFrom) {
 
   currQuestionCount++;
   currentQuestion = randomQuestion(allQuestionsToChooseFrom);
+
+  // show module (left) and category (right) for the current question
+  updateQuestionMeta(currentQuestion);
 
   // rootElement.innerHTML = "";
   rootElement.appendChild(questionElement);
@@ -509,6 +612,9 @@ function displayAnswerPage(currentQuestion) {
 }
 
 function displayScorePage(rootElement) {
+  if (document.getElementById("qaMeta") != undefined) {
+    document.getElementById("qaMeta").remove();
+  }
   goButton.remove();
   document.getElementById("yourAnswer").remove();
   document.getElementById("yesOrNo").remove();
