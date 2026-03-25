@@ -1700,7 +1700,7 @@ const baseData = [
       {
         name: "Huni",
         answer:
-          "Conceptually, you can define beans by:\n- annotating classes (component scanning)\n- defining them in configuration classes\n- declaring them manually\n\nSpring then manages their lifecycle.\n\nKey idea:\nA bean is simply an object managed by Spring.",
+          "@Component\n@Service\n@Repository\n@Controller\n\nConceptually, you can define beans by:\n- annotating classes (component scanning)\n- defining them in configuration classes\n- declaring them manually\n\nSpring then manages their lifecycle.\n\nKey idea:\nA bean is simply an object managed by Spring.",
       },
     ],
   },

@@ -30,6 +30,17 @@ main {
   flex-direction: column;
 }
 
+.qa-meta {
+  position: absolute;
+  top: 1rem;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  color: blueviolet;
+}
+
 button {
   background-color: rgb(61, 17, 149);
   color: aqua;
@@ -71,15 +82,43 @@ button:hover {
   padding-bottom: 10rem;
 }
 
+.module-categories {
+  transition: all ease-in-out 600ms;
+}
+.module-header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 30vw;
+  border: 1px solid aqua;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+}
+
+.module-header-container:hover {
+  transform: scale(1.05);
+}
+
+.moduleCheckbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.2rem;
+  background: azure;
+  display: flex;
+  text-align: right;
+  align-items: flex-end;
+  justify-content: flex-end;
+  cursor: pointer;
+}
 .moduleHeading {
   text-align: center;
-  width: 60%;
   font-size: 2rem;
   color: blueviolet;
-  border: 1px solid aqua;
-  border-radius: 30px;
-  padding: 0.2rem;
-  margin-top: 4rem;
 }
 
 .category {
@@ -119,6 +158,7 @@ button:hover {
   text-align: right;
   align-items: flex-end;
   justify-content: flex-end;
+  cursor: pointer;
 }
 
 .maxQuestionCount {
@@ -274,7 +314,6 @@ textarea {
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin-bottom: 7rem;
   margin-top: 1rem;
   font-size: 1.5rem;
 }
@@ -513,6 +552,9 @@ textarea {
     font-size: calc(0.5rem + 3dvw);
     margin: 0.3rem;
   }
+  .module-header-container {
+    width: 70vw;
+  }
 
   #welcome {
     font-size: calc(0.5rem + 3dvw);
@@ -543,6 +585,17 @@ textarea {
   }
   .endRight {
     transform: translate(-60%, 200%);
+  }
+  #qaModule {
+    position: fixed;
+    bottom: 2%;
+    left: 5%
+  }
+
+  #qaCategory {
+    position: fixed;
+    bottom: 2%;
+    right: 5%;
   }
 
   .checkBox {
