@@ -118,21 +118,22 @@ function displayFirstPage(data) {
     // module checkbox selects/deselects all categories in this module
     moduleCheckbox.addEventListener("click", (e) => {
       const chex = moduleCategoriesWrapper.getElementsByClassName("checkBox");
-      if (!moduleCheckbox.hasAttribute("checked")) {
-        moduleCheckbox.setAttribute("checked", true);
+
+      if (moduleCheckbox.checked) {
+        // turned ON: select all categories in this module
         moduleHeaderContainer.style.color = "brown";
         for (let check of chex) {
-          if (!check.hasAttribute("checked")) {
+          if (!check.checked) {
             check.click();
           }
         }
       } else {
+        // turned OFF: unselect all categories in this module
         for (let check of chex) {
-          if (check.hasAttribute("checked")) {
+          if (check.checked) {
             check.click();
           }
         }
-        moduleCheckbox.removeAttribute("checked");
         moduleHeaderContainer.style.color = "palegreen";
       }
 
@@ -314,37 +315,31 @@ function displayFirstPage(data) {
     const chex = categoriesElement.getElementsByClassName("checkBox");
     const moduleCheckboxes =
       categoriesElement.getElementsByClassName("moduleCheckbox");
-    // console.log(chex);
-    if (!checkAllBox.hasAttribute("checked")) {
-      checkAllBox.setAttribute("checked", true);
+
+    if (checkAllBox.checked) {
+      // turned ON: select all categories
       for (let check of chex) {
-        if (!check.hasAttribute("checked")) {
-          // console.log("clicked")
+        if (!check.checked) {
           check.click();
         }
       }
       // mark all module checkboxes as selected and color their headers
       for (let mCheck of moduleCheckboxes) {
-        if (!mCheck.hasAttribute("checked")) {
-          mCheck.setAttribute("checked", true);
-        }
+        mCheck.checked = true;
         if (mCheck.parentElement) {
           mCheck.parentElement.style.color = "brown";
         }
       }
-    } else if (checkAllBox.hasAttribute("checked")) {
+    } else {
+      // turned OFF: unselect all categories
       for (let check of chex) {
-        if (check.hasAttribute("checked")) {
-          // console.log("clicked")
+        if (check.checked) {
           check.click();
         }
       }
-      checkAllBox.removeAttribute("checked");
       // uncheck all module checkboxes and reset their header color
       for (let mCheck of moduleCheckboxes) {
-        if (mCheck.hasAttribute("checked")) {
-          mCheck.removeAttribute("checked");
-        }
+        mCheck.checked = false;
         if (mCheck.parentElement) {
           mCheck.parentElement.style.color = "palegreen";
         }
@@ -616,9 +611,21 @@ function displayScorePage(rootElement) {
     document.getElementById("qaMeta").remove();
   }
   goButton.remove();
-  document.getElementById("yourAnswer").remove();
-  document.getElementById("yesOrNo").remove();
-  document.getElementById("question").remove();
+
+  const yourAnswerElement = document.getElementById("yourAnswer");
+  if (yourAnswerElement) {
+    yourAnswerElement.remove();
+  }
+
+  const yesOrNoElement = document.getElementById("yesOrNo");
+  if (yesOrNoElement) {
+    yesOrNoElement.remove();
+  }
+
+  const questionElement = document.getElementById("question");
+  if (questionElement) {
+    questionElement.remove();
+  }
   for (let e of document.querySelectorAll(".answersSoFar")) {
     e.remove();
   }
